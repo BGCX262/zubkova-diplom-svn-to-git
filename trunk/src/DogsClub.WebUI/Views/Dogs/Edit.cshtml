@@ -1,0 +1,83 @@
+﻿@model DogsClub.WebUI.Models.Dog
+@{
+    List<SelectListItem> DogType = new List<SelectListItem>();
+    if (ViewData["DogType"] != null)
+    {
+        var a = ViewData["DogType"] as IEnumerable<DogsClub.WebUI.Models.DogType>;
+        if (a != null)
+        {
+            DogType.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id != Model.IdDogType ? false : true }));
+        }
+    }
+}
+
+@{
+    List<SelectListItem> sexDog = new List<SelectListItem>();
+    if (ViewData["sexDog"] != null)
+    {
+        var a = ViewData["sexDog"] as IEnumerable<DogsClub.WebUI.Models.SexDog>;
+        if (a != null)
+        {
+            sexDog.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id.ToString() != Model.GetSex ? false : true }));
+        }
+    }
+}
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="HeaderShowDogs">
+    Редакторование информации о питомце
+</div>
+<div id="ContPhoto">
+    <div class="ImageUser">
+        <div id="AvatarPersonal">
+            <div>
+                <img src="@Url.Action("GetDogsAvatar", "Images", new { IdDog = Model.Id })" width="120" height="130" />
+            </div>
+        </div>
+    </div>
+    <div id="chengefile">
+        @using (Html.BeginForm("GetDogsAvatar", "Images", FormMethod.Post, new { enctype = "multipart/form-data", @class = "NewForm" }))
+        {
+            @Html.Hidden("IdDog", Model.Id)
+            <input type="file" name="file" />
+            <input id="submitChenge" type="submit" value="Изменить" />
+        }
+    </div>
+</div>
+<div class="ConteinerCreateDog">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="ConteinerImagesUser firstBlock">
+            <div class="DataauthorizationUser">
+
+                <div class="NamePersonCab ">Имя собаки</div>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "ValuePersonCab" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                <div class="NamePersonCab">Возраст</div>
+                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "ValuePersonCab" } })
+                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+
+                <div class="NamePersonCab">Парода</div>
+                @Html.DropDownList("GetTypeDogs", DogType, new { @class = "ValuePersonCab newDropDown" })
+
+                <div class="NamePersonCab">Пол</div>
+                @Html.DropDownList("GetSexDog", sexDog, new { @class = "ValuePersonCab newDropDown" })
+            </div>
+
+            <div class="NamePersonCab">Описание</div>
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+        </div>
+        <input type="submit" value="Сохранить" class="btn btn-info" id="newSubmit" />
+    }
+</div>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+

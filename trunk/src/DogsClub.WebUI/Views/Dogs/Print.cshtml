@@ -1,0 +1,55 @@
+﻿@model DogsClub.WebUI.Models.Dog
+@{
+    List<SelectListItem> DogType = new List<SelectListItem>();
+    if (ViewData["DogType"] != null)
+    {
+        var a = ViewData["DogType"] as IEnumerable<DogsClub.WebUI.Models.DogType>;
+        if (a != null)
+        {
+            DogType.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id != Model.IdDogType ? false : true }));
+        }
+    }
+}
+
+@{
+    List<SelectListItem> sexDog = new List<SelectListItem>();
+    if (ViewData["sexDog"] != null)
+    {
+        var a = ViewData["sexDog"] as IEnumerable<DogsClub.WebUI.Models.SexDog>;
+        if (a != null)
+        {
+            sexDog.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id.ToString() != Model.GetSex ? false : true }));
+        }
+    }
+}
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="HeaderShowDogs">
+    @Html.DisplayFor(model => model.Name)
+</div>
+<div class="ConteinerFullShowDog">
+    <div class="ChowPersonDogs">
+        <div>
+            <img src="@Url.Action("GetDogsAvatar", "Images", new { IdDog = Model.Id })" width="500" height="500" />
+        </div>
+    </div>
+    <div class="ConteinerPersonDog">
+        <div class="DispleyName">Возраст</div>
+        <div class="DispleyValue">@Model.Age</div>
+        <div class="DispleyName">Парода</div>
+        @Html.DropDownList("GetTypeDog", DogType)
+        <div class="DispleyName">Пол</div>
+        @Html.DropDownList("GetTypeDog", sexDog)
+        <div class="DispleyName">Хозяин</div>
+        <div class="DispleyValue">@Model.User.LastName @Model.User.FirstName @Model.User.MiddleName</div>
+        <div class="DispleyName">Победы</div>
+        <div class="DispleyValue">@Model.Age</div>
+        <div class="DispleyName">Участвовал</div>
+        <div class="DispleyValue">@Model.Age</div>
+        <div class="DispleyName">Описание</div>
+        <textarea class="textAreaValue">@Model.Description</textarea>
+        @Html.ActionLink("Закрыть", "GetAllDogsUSer", "Dogs", new { @class = "btn btn-info", @id = "submitPrintDogs" })
+    </div>
+</div>
+

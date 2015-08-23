@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клуб собаководов</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/PatternBootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/PatternBootstrap/style.css" rel="stylesheet" />
+    <link href="~/Content/Mystyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top move-me ">
+        <div class="ConteinerAuthorization">
+            <div>@Html.Action("UserStatus", "Account")</div>
+            @Html.Action("UserInfo", "User")
+        </div>
+        <div class="container">
+            <div class="navbar-collapse collapse move-me">
+                <ul class="nav navbar-nav navbar-right">
+                    <li> @Html.HomeNavigationLink("Домашняя", "Index", "Home")</li>
+                    <li>@Html.HomeNavigationLink("Продажа", "GetAllDogForSaleHome", "DogForSale")</li>
+                    <li> @Html.HomeNavigationLink("Галерея", "GaleryPhoto", "Images")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="ConteinerPersonal">
+        <div id="home" class="NewHome">
+            <div class="ConteinerNewPersonal">
+                <div class="LeftVrapper">
+                    <div class="navPersonalCabinet">
+                        <ul class="NavPanel">
+                            <li role="presentation">@Html.NavigationLink("Обследование", "Index", "MedicalCare")</li>
+                            <li role="presentation">@Html.NavigationLink("Прививки", "Index", "Vaccination")</li>
+                            <li role="presentation">@Html.NavigationLink("Награды", "Index", "Avard")</li>
+                            <li role="presentation">@Html.NavigationLink("Выставки", "Index", "Exposition")</li>
+                            <li role="presentation">@Html.NavigationLink("Типы платежей", "Index", "PaymentType")</li>
+                            <li role="presentation">@Html.NavigationLink("Платежи", "Index", "Payment")</li>
+                            <li role="presentation">@Html.NavigationLink("Продажа", "Index", "DogForSale")</li>
+                            <li role="presentation">@Html.NavigationLink("Отчеты", "Index", "Reports")</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="RightVrapper">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/PatternBootstrap/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/PatternBootstrap/bootstrap.js"></script>
+    @RenderSection("script", false)
+</body>
+</html>   

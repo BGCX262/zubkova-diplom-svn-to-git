@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.DogType>
+
+<table class="table table-hover">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

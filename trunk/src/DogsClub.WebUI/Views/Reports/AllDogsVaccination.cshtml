@@ -1,0 +1,102 @@
+﻿<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+<div class="FormReportVaccination">
+    <div class="FormReportVaccinationHeader">Вакцинации питомцев</div>
+
+@using (Html.BeginForm("AllDogsVaccinationData", "Reports", FormMethod.Post))
+{
+    <div class="NamePersonCab">C</div>
+    @Html.TextBox("startPeriod", false, new { @class = "newValuePersonCab" });
+
+    <div class="NamePersonCab">По</div>
+    @Html.TextBox("endPeriod", DateTime.Now.ToShortDateString(), new { @class = "newValuePersonCab" });
+    <input type="submit" id="AddButton2" value="Сформировать отчет" class="btn btn-info" />
+}
+</div>
+<div class="reportContainer" id="reportContainer">
+
+</div>
+
+@section script{
+<script src="~/DatePicker/DataPicker(1-10).js"></script>
+<script src="~/DatePicker/DataPicker(1-11).js"></script>
+<script src="~/DatePicker/MyScriptDatePicker.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+<script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+
+@*<script src="~/Scripts/bootstrapPager.js"></script>*@
+
+	<script>
+
+		var reportDataUrl = "@Url.Action("AllDogsVaccinationData", "Reports")";
+
+		$(document).ready(function () {
+
+			$("#createReport").click(function () {
+				var startPeriod = $("#startPeriod").val();
+				var endPeriod = $("#endPeriod").val();
+
+				if (startPeriod === "" || endPeriod === "") {
+					alert("Пожалуйста, заполните параметры отчета");
+					return;
+				}
+
+				$.ajax({
+					url: reportDataUrl,
+					type: "POST",
+					data: { startPeriod: startPeriod, endPeriod: endPeriod },
+					beforeSend: function () {
+						$("#reportContainer").html("Pапрос к базе данных!");
+					},
+					success: function (response) {
+						$("#reportContainer").html(response);
+						$("#tableReport").dataTable({
+							"language": {
+								"lengthMenu": "Отображать _MENU_ записей на странице",
+								"zeroRecords": "Извините, таблица пуста",
+								"info": "Страница _PAGE_ из _PAGES_",
+								"infoEmpty": "Нет доступных записей",
+								"infoFiltered": "(filtered from _MAX_ total records)",
+								"paginate": {
+								    "next": "Следующая страница",
+								    "previous": "Предыдущая страница"
+								},
+								"search": "Найти"
+							}
+						});
+					},
+					error: function () {
+						alert("При запросе к серверу произошла ошибка. Пожалуйста, попробуйте обновить страницу");
+					}
+				});
+			});
+
+		});
+
+		$('#startPeriod').datepicker({
+		    dateFormat: 'dd.mm.yy'
+		});
+		$(function () {
+		    $("#startPeriod").datepicker();
+		});
+		$('#startPeriod').datepicker('option', $.datepicker.regional["ru"]);
+
+		jQuery(function ($) {
+		    $.datepicker.regional['ru'] = {
+		        monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь'],
+		        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+		        firstDay: 1,
+		    };
+		    $.datepicker.setDefaults($.datepicker.regional['ru']);
+		});
+		$.datepicker.setDefaults($.extend(
+          $.datepicker.regional["ru"])
+        );
+	</script>
+
+}

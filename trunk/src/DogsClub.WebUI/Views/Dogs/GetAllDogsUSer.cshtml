@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.Dog>
+@{
+    Layout = "/Views/Shared/_Layout2.cshtml";
+}
+<div class="TypeDog">
+
+        <div class="ConteinerChengeUser">
+             <div class="headerDogType">Питомцы</div>
+            @Html.ActionLink("Добавить питомца", "Add", "Dogs", new { @class = "btn btn-info", @id = "newKnopkaAdd" })
+        </div>
+
+</div>
+
+<div class="ConteinerDogs">
+@foreach (var item in Model) {
+    <div class="itemDog">
+        <span>
+                <img src="@Url.Action("GetDogsAvatar", "Images", new { IdDog = item.Id })" width="60" height="60" class="ShowPhoto" />
+        </span>
+        <span>
+            @Html.ActionLink(item.Name, "Print", "Dog", new { user = item.Id })
+        </span>
+        <span>
+            @Html.DisplayFor(modelItem => item.DogType.Name)
+        </span>
+        <span>
+            @Html.DisplayFor(modelItem => item.GetSex)
+        </span>
+        <span>
+            @Html.DisplayFor(modelItem => item.Age)
+        </span>
+        <span>
+            @Html.DisplayFor(modelItem => item.Description)
+        </span>
+        @*<span>
+            @Html.ActionLink("Участвовал","")
+            @Html.DisplayFor(modelItem => item.Description)
+        </span>*@
+        <span class="panelUpr">
+            <a href="@Url.Action("FullShowItemDog", "Dogs", new { idDog = item.Id })" , title="Просмотр"><span class="glyphicon glyphicon-eye-open"></span></a> |
+            <a href="@Url.Action("Edit", "Dogs", new { Id = item.Id })" , title="Изменить"><span class="glyphicon glyphicon-wrench" , id="PrintButton"></span></a> |
+            <a href="@Url.Action("Delete", "Dogs", new { Id = item.Id })" , title="Удалить"><span class="glyphicon glyphicon-fire" , id="ColorButton"></span></a>
+        </span>
+    </div>
+}
+</div>
+
+
+
+

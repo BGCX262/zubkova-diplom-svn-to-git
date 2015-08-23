@@ -1,0 +1,64 @@
+﻿@model DogsClub.WebUI.Models.Dog
+@{
+    List<SelectListItem> DogType = new List<SelectListItem>();
+    if (ViewData["DogType"] != null)
+    {
+        var a = ViewData["DogType"] as IEnumerable<DogsClub.WebUI.Models.DogType>;
+        if (a != null)
+        {
+            DogType.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString() }));
+        }
+    }
+}
+
+@{
+    List<SelectListItem> sexDog = new List<SelectListItem>();
+    if (ViewData["sexDog"] != null)
+    {
+        var a = ViewData["sexDog"] as IEnumerable<DogsClub.WebUI.Models.SexDog>;
+        if (a != null)
+        {
+            sexDog.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString() }));
+        }
+    }
+}
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="HeaderShowDogs">
+    Добавление питомца
+</div>
+<div class="ConteinerCreateDog">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="ConteinerImagesUser">
+            
+            <div class="NamePersonCab ">Кличка</div>
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab">Возраст</div>
+            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab">Порода</div>
+            @Html.DropDownList("GetTypeDog", DogType, new { @class = "newValuePersonCab DropDown" })
+
+            <div class="NamePersonCab">Пол</div>
+            @Html.DropDownList("GetSexDog", sexDog, new { @class = "newValuePersonCab DropDown" })
+
+            <div class="NamePersonCab">Описание</div>
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+        </div>
+        <input type="submit" value="Сохранить" class="btn btn-info" id="newSubmit" />
+    }
+</div>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+

@@ -1,0 +1,126 @@
+﻿@model List<DogsClub.WebUI.Models.User>
+@{
+    Layout = "~\\Views\\Shared\\_Layout5.cshtml";
+   
+        var alldog = ViewData["allDog"] as List<DogsClub.WebUI.Models.Dog>;
+}
+<div class="ConteinerSearch">
+    <div class="headerSearch">Результаты поиска</div>
+
+    @if (Model.Count == 0 && ViewData["allDog"]==null)
+    {
+        <div>Ничего не найдено</div>
+    }
+    else if(Model.Count != 0 && ViewData["allDog"]==null)
+    {
+        <table class="table table-hover " id="table">
+            <thead>
+                <tr>
+                    <th class="ZagName">
+                        @Html.DisplayName("Фамилия")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Имя")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Отчество")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Почта")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Телефон")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Адрес")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Действие")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="ZagValue2">
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td class="ZagValue2">
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td class="ZagValue2">
+                            @Html.DisplayFor(modelItem => item.MiddleName)
+                        </td>
+                        <td class="ZagValue2">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td class="ZagValue2">
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td class="ZagValue2">
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td class="ZagValue2">
+                            @Html.ActionLink("Просмотр", "FullShowItemUser","User", new { idUser = item.Id },false)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model.Count == 0 && ViewData["allDog"] != null)
+    {
+
+    <table class="table table-hover" id="table">
+        <thead>
+            <tr>
+                <th class="ZagName">
+                    @Html.DisplayName("Имя")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Пол")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Парода")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Хозяин")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Описание")
+                </th>
+                <th class="ZagName">
+                    Действие
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in alldog)
+            {
+                <tr>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.GetSex)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.DogType.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.GetUser.Email)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.ActionLink("Просмотр", "FullShowItemDog","Dogs", new { idDog = item.Id },false)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    }
+</div>

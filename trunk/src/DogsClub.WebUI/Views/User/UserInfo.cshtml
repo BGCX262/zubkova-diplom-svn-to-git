@@ -1,0 +1,17 @@
+﻿<div class="InfoAutor">
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <div class="InfoContent">
+            @Html.HomeNavigationLink(@User.Identity.Name, "PersonalCabinet", "Account")
+            @Html.ActionLink("Выход", "LogOut", "Account")
+        </div>
+    }
+    else
+    {
+        <div class="InfoContent">
+            @Html.ActionLink("Вход", "Login", "Account")
+            <span class="verticalLine"></span>
+            @Html.ActionLink("Регистрация", "Registration", "Account")
+        </div>
+    }
+</div>

@@ -1,0 +1,21 @@
+﻿@model DogsClub.WebUI.Models.DogType
+
+@{
+    Layout = "~\\Views\\Shared\\_Layout3.cshtml";
+}
+<div class="TypeDog">
+    @using (Html.BeginForm())
+    {
+        <div class="ConteinerChengeUser">
+            @Html.AntiForgeryToken()
+            <div class="NamePersonCab ">Парода</div>
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "EditText" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            <input type="submit" value="Изменить" class="btn btn-info newValueMargin" id="newSubmit" />
+        </div>
+    }
+    </div>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

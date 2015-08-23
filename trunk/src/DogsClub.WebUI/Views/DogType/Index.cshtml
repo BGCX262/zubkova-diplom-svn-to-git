@@ -1,0 +1,13 @@
+﻿@model DogsClub.WebUI.Models.DogType
+
+@{
+    Layout = "~\\Views\\Shared\\_Layout3.cshtml";
+}
+<div>
+    <div class="ConteinerAddDogType">
+        @Html.Action("Add", "DogType")
+    </div>
+    <div class="ConteinerGerAllDogType">
+        @Html.Action("GetAll", "DogType")
+    </div>
+</div>

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.User>
+
+@{
+    ViewBag.Title = "GetAllUsers";
+}
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+
+<h2>GetAllUsers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Фамилия")
+            </th>
+            <th>
+                @Html.DisplayName("Имя")
+            </th>
+            <th>
+                @Html.DisplayName("Отчество")
+            </th>
+            <th>
+                @Html.DisplayName("ДР")
+            </th>
+            <th>
+                @Html.DisplayName("Email")
+            </th>
+            <th>
+                @Html.DisplayName("Телефон")
+            </th>
+            <th>
+                @Html.DisplayName("Регистрация")
+            </th>
+            <th>
+                @Html.DisplayName("Город")
+            </th>
+            <th>
+                @Html.DisplayName("Адрес")
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <a href="@Url.Action("ChangeUserIsAdmin", "User", new { user = item.Id })" , title="Изменить"><span class="glyphicon glyphicon-wrench" , id="redGreen"></span></a> |
+                    <a href="@Url.Action("DefaultPassword", "User", new { user = item.Id })" , title="Новый пароль"><span class="glyphicon glyphicon-lock" , id="redBlack"></span></a> |
+                    <a href="@Url.Action("Delete", "User", new { user = item.Id })" , title="Удалить"><span class="glyphicon glyphicon-fire" , id="redChenge"></span></a>
+                    @*@Html.ActionLink("EditUserAdmin", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Users", new { id = item.Id }) |
+                    @Html.ActionLink("PasswordDefault", "Users", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section script {
+<script src="~/Scripts/bootstrap.js"></script>
+
+<script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").dataTable({
+                "language": {
+                    "lengthMenu": "Отображать _MENU_ записей на странице",
+                    "zeroRecords": "Извините, таблица пуста",
+                    "info": "Страница _PAGE_ из _PAGES_",
+                    "infoEmpty": "Нет доступных записей",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "next": "Следующая страница",
+                        "previous": "Предыдущая страница"
+                    },
+                    "search": "Найти"
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,45 @@
+﻿@model DogsClub.WebUI.Models.DogsPhoto
+@{
+    List<SelectListItem> AllDogs = new List<SelectListItem>();
+    if (ViewData["AllDogs"] != null)
+    {
+        var a = ViewData["AllDogs"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (a != null)
+        {
+            AllDogs.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id != Model.DogId ? false : true }));
+        }
+    }
+}
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="HeaderShowDogs">
+    Редактирование фотографии
+</div>
+<div class="ConteinerFullShowDog">
+    <div class="ChowPersonDogs">
+        <div>
+            <img src="@Url.Action("GetPhotoDogs", "Images", new { IdPhoto = Model.Id })" width="500" height="500" />
+        </div>
+    </div>
+    <div class="ConteinerPersonDog">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model=>model.Id)
+            <div class="ConteinerImagesUser firstBlock">
+                <div class="ChengePhoto">
+                    <div class="DispleyName">Питомец</div>
+                    @Html.DropDownList("CheckDog", AllDogs, new { @class = "ValuePersonCab newDropDown newDropDown2" })
+                </div>
+            </div>
+            <input type="submit" value="Сохранить" class="btn btn-info" id="newSubmit" />
+        }
+    </div>
+</div>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+

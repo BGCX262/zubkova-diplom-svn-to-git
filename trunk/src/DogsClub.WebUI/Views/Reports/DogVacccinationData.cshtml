@@ -1,0 +1,107 @@
+﻿@model  List<DogsClub.WebUI.Models.Vaccination>
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+    var dog = ViewData["itemDog"] as DogsClub.WebUI.Models.Dog;
+    DateTime startPeriod = (DateTime)ViewData["startPeriod"];
+    DateTime endPeriod = (DateTime)ViewData["endPeriod"];
+}
+
+
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+
+<div class="ConteinerReportVaccination2">
+    <div class="FormReportVaccination">
+        <span class="headerWer">Вакцинация </span> @dog.Name  c @startPeriod.ToLongDateString() по @endPeriod.ToLongDateString()
+    </div>
+    <div class="graphic-wrap">
+        <table class="table table-hover" id="tableReport">
+            <thead>
+                <tr>
+                    <th class="ZagName">
+                        Кличка
+                    </th>
+                    <th class="ZagName">
+                        Парода
+                    </th>
+                    <th class="ZagName">
+                        Пол
+                    </th>
+                    <th class="ZagName">
+                        Возраст
+                    </th>
+                    <th class="ZagName">
+                        Владелец
+                    </th>
+                    <th class="ZagName">
+                        Прививка
+                    </th>
+                    <th class="ZagName">
+                        Дата
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="ZagValue2">@item.GetDog.Name</td>
+                        <td class="ZagValue2">@item.GetDog.DogType.Name</td>
+                        <td class="ZagValue2">@item.GetDog.GetSex</td>
+                        <td class="ZagValue2">@item.GetDog.Age</td>
+                        <td class="ZagValue2">@item.GetDog.GetUser.LastName @item.GetDog.GetUser.FirstName @item.GetDog.GetUser.MiddleName</td>
+                        <td class="ZagValue2">@item.Name</td>
+                        <td class="ZagValue2">@item.DateVacination.Value.ToLongDateString()</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <div>
+        <div class="col-md-12 graphic-wrap noPadding">
+            <div class="panel panel-default noBorderRadius">
+                <div class="panel-heading">
+                    Количество прививок с группировкой по году
+                </div>
+                <div class="panel-body">
+                    <div id="morris-donut-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script {
+    <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+    <script src="~/Scripts/morris/raphael-2.1.0.min.js"></script>
+    <script src="~/Scripts/morris/morris.js"></script>
+    <script>
+        var arr = @Html.Raw(Json.Encode(ViewData["jsonData"]));
+
+        $(document).ready(function () {
+
+            Morris.Donut({
+                element: 'morris-donut-chart',
+                data: arr.Data,
+                resize: true
+            });
+
+            $("#tableReport").dataTable({
+                "language": {
+                    "lengthMenu": "Отображать _MENU_ записей на странице",
+                    "zeroRecords": "Извините, таблица пуста",
+                    "info": "Страница _PAGE_ из _PAGES_",
+                    "infoEmpty": "Нет доступных записей",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "next": "Следующая страница",
+                        "previous": "Предыдущая страница"
+                    },
+                    "search": "Найти"
+                }
+            });
+        })
+    </script>
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c07a33c33874f559ecd3b5e4d84e04f" Name="Diagram1">
+        <EntityTypeShape EntityType="DClubEntities.Avard" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.Dog" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.DogsForSale" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.DogsPhoto" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.DogType" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.ExpositionMember" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.Exposition" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.ExpositionsRequest" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.ExpositionWinner" Width="1.5" PointX="10.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.Payment" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.PaymentType" Width="1.5" PointX="3.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.Role" Width="1.5" PointX="3.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.SalesHistory" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.UsersRole" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DClubEntities.Vaccination" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
+        <AssociationConnector Association="DClubEntities.FK__Expositio__IdAva__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Dogs__IdDogType__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__DogsForSa__IdDog__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__DogsPhoto__DogId__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Expositio__IdDog__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Expositio__IdDog__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__SalesHist__IdDog__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Vaccinati__IdDog__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Expositio__IdExp__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Expositio__IdExp__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Expositio__IdExp__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__Payments__IdType__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="DClubEntities.FK__UsersRole__IdRol__778AC167" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DClubEntities.MedicalCare" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DClubEntities.PaymentsPeriodType" Width="1.5" PointX="1.5" PointY="21.125" />
+        <AssociationConnector Association="DClubEntities.FK__MedicalCa__IdDog__29221CFB" />
+        <AssociationConnector Association="DClubEntities.FK__PaymentTy__IdPer__2DE6D218" />
+        <EntityTypeShape EntityType="DClubEntities.User" Width="1.5" PointX="0.75" PointY="11.125" />
+        <AssociationConnector Association="DClubEntities.FK__Dogs__OwnerId__46B27FE2" />
+        <AssociationConnector Association="DClubEntities.FK__Payments__UserId__671F4F74" />
+        <AssociationConnector Association="DClubEntities.FK__SalesHist__NewOw__6FB49575" />
+        <AssociationConnector Association="DClubEntities.FK__SalesHist__OldOw__6EC0713C" />
+        <AssociationConnector Association="DClubEntities.FK__UsersRole__IdUse__40F9A68C" />
+        <EntityTypeShape EntityType="DClubEntities.News" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

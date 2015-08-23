@@ -1,0 +1,12 @@
+﻿@model DogsClub.WebUI.Models.Dog
+@{
+    ViewBag.Title = "Remove";
+}
+<h2>Хотите удалить @Html.DisplayName(Model.Name) ?</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model=>model.Id)
+    <button name="Confirm" value="true">Да</button>
+    <button name="Confirm" value="false">Нет</button>
+}
+

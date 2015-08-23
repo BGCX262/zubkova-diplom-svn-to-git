@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsClub.DAL", "DogsClub\DogsClub.DAL.csproj", "{D04E7EB4-880D-4B56-8CE3-55F41D311BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsClub.BLL", "DogsClub.BLL\DogsClub.BLL.csproj", "{ABE86C46-DC36-49B5-A56A-0173AD76F628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsClub.DomainModel", "DogsClub.DomainModel\DogsClub.DomainModel.csproj", "{EE1F9D14-FF9F-4074-B5BE-A21453404928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsClub.WebUI", "DogsClub.WebUI\DogsClub.WebUI.csproj", "{49CCB8C0-7F05-40A6-8D78-E6273EFCE46C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsClub.Shared", "DogsClub.Shared\DogsClub.Shared.csproj", "{457583D3-E929-443B-803E-74EE26002881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsClub.BLL.Tests", "DogsClub.BLL.Tests\DogsClub.BLL.Tests.csproj", "{040593A3-DB16-4C26-8F6E-EBEF21F9E79B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D04E7EB4-880D-4B56-8CE3-55F41D311BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D04E7EB4-880D-4B56-8CE3-55F41D311BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D04E7EB4-880D-4B56-8CE3-55F41D311BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D04E7EB4-880D-4B56-8CE3-55F41D311BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE86C46-DC36-49B5-A56A-0173AD76F628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE86C46-DC36-49B5-A56A-0173AD76F628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE86C46-DC36-49B5-A56A-0173AD76F628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE86C46-DC36-49B5-A56A-0173AD76F628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE1F9D14-FF9F-4074-B5BE-A21453404928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE1F9D14-FF9F-4074-B5BE-A21453404928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE1F9D14-FF9F-4074-B5BE-A21453404928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE1F9D14-FF9F-4074-B5BE-A21453404928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CCB8C0-7F05-40A6-8D78-E6273EFCE46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CCB8C0-7F05-40A6-8D78-E6273EFCE46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CCB8C0-7F05-40A6-8D78-E6273EFCE46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CCB8C0-7F05-40A6-8D78-E6273EFCE46C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{457583D3-E929-443B-803E-74EE26002881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{457583D3-E929-443B-803E-74EE26002881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{457583D3-E929-443B-803E-74EE26002881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{457583D3-E929-443B-803E-74EE26002881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{040593A3-DB16-4C26-8F6E-EBEF21F9E79B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040593A3-DB16-4C26-8F6E-EBEF21F9E79B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040593A3-DB16-4C26-8F6E-EBEF21F9E79B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040593A3-DB16-4C26-8F6E-EBEF21F9E79B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

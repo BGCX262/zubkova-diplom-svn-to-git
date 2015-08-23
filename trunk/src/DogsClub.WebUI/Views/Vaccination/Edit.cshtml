@@ -1,0 +1,30 @@
+﻿@model DogsClub.WebUI.Models.Vaccination
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+<div>
+    <div class="ConteinerAddExposition">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="ConteinerChengeUser">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.IdDog)
+                @Html.HiddenFor(model => model.Id)
+                <div class="NamePersonCab ">Название</div>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "EditText" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                <div class="NamePersonCab ">Дата</div>
+                @Html.EditorFor(model => model.DateVacination, new { htmlAttributes = new { @class = "EditText" } })
+                @Html.ValidationMessageFor(model => model.DateVacination, "", new { @class = "text-danger" })
+
+                <input type="submit" value="Изменить" class="btn btn-info newValueMargin" id="newSubmit" />
+            </div>
+        }
+    </div>
+</div>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

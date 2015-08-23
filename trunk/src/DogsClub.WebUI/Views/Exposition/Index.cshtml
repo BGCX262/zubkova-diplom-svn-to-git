@@ -1,0 +1,51 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+<div>
+    <div class="ConteinerAddExposition">
+        @Html.Action("Add", "Exposition")
+    </div>
+    <div class="ConteinerGetAllExposition">
+        @Html.Action("GetAll", "Exposition")
+    </div>
+</div>
+@section script{
+    <script src="~/DatePicker/DataPicker(1-10).js"></script>
+    <script src="~/DatePicker/DataPicker(1-11).js"></script>
+    <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $('#DateStart').datepicker({
+            dateFormat: 'dd.mm.yy'
+        });
+        $(function () {
+            $("#DateStart").datepicker();
+        });
+        $('#DateStart').datepicker('option', $.datepicker.regional["ru"]);
+
+        jQuery(function ($) {
+            $.datepicker.regional['ru'] = {
+                monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь'],
+                dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                firstDay: 1,
+            };
+            $.datepicker.setDefaults($.datepicker.regional['ru']);
+        });
+        $.datepicker.setDefaults($.extend(
+          $.datepicker.regional["ru"])
+        );
+    </script>
+
+}
+
+
+
+
+
+

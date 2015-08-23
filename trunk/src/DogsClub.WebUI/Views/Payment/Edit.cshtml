@@ -1,0 +1,91 @@
+﻿@model  DogsClub.WebUI.Models.Payment
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+
+    List<SelectListItem> IdType = new List<SelectListItem>();
+    if (ViewData["allPaymentType"] != null)
+    {
+        var a = ViewData["allPaymentType"] as IEnumerable<DogsClub.WebUI.Models.PaymentType>;
+        if (a != null)
+        {
+
+            IdType.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id != Model.IdType ? false : true }));
+        }
+    }
+
+    List<SelectListItem> UserId = new List<SelectListItem>();
+    if (ViewData["allUser"] != null)
+    {
+        var a = ViewData["allUser"] as IEnumerable<DogsClub.WebUI.Models.User>;
+        if (a != null)
+        {
+
+            UserId.AddRange(a.Select(t => new SelectListItem() { Text = t.LastName + "  " + t.FirstName + "  " + t.MiddleName, Value = t.Id.ToString(), Selected = t.Id != Model.UserId ? false : true }));
+        }
+    }
+
+}
+<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+<div>
+    <div class="ConteinerAddExposition">
+        @using (@Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="ConteinerChengeUser">
+                @Html.AntiForgeryToken()
+
+                <div class="NameAdd">Пользователь</div>
+                @Html.DropDownList("UserId", UserId, new { @class = "EditText2" })
+
+                <div class="NameAdd">Тип платежа</div>
+                @Html.DropDownList("IdType", IdType, new { @class = "EditText2" })
+
+                <div class="NameAdd">Сумма</div>
+                @Html.ValidationMessageFor(model => model.PaySize, "", new { @class = "validationMessage" })
+                @Html.EditorFor(model => model.PaySize, new { htmlAttributes = new { @class = "EditText2" } })
+
+                <div class="NameAdd">Дата</div>
+                @Html.ValidationMessageFor(model => model.PayDate, "", new { @class = "validationMessage" })
+                @Html.EditorFor(model => model.PayDate, new { htmlAttributes = new { @class = "EditText2" } })
+
+                <div class="NameAdd">Описание</div>
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "validationMessage" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "EditText2" } })
+
+                <input type="submit" value="Добавить" class="btn btn-info" id="AddButton" />
+            </div>
+        }
+        </div>
+    </div>
+
+        @section script{
+            <script src="~/DatePicker/DataPicker(1-10).js"></script>
+            <script src="~/DatePicker/DataPicker(1-11).js"></script>
+            <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+            <script>
+                $('#PayDate').datepicker({
+                    dateFormat: 'dd.mm.yy'
+                });
+                $(function () {
+                    $("#PayDate").datepicker();
+                });
+                $('#PayDate').datepicker('option', $.datepicker.regional["ru"]);
+
+                jQuery(function ($) {
+                    $.datepicker.regional['ru'] = {
+                        monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                        'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                        'Октябрь', 'Ноябрь', 'Декабрь'],
+                        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                        firstDay: 1,
+                    };
+                    $.datepicker.setDefaults($.datepicker.regional['ru']);
+                });
+                $.datepicker.setDefaults($.extend(
+                  $.datepicker.regional["ru"])
+                );
+            </script>
+        }

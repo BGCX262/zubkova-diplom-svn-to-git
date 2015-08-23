@@ -1,0 +1,25 @@
+﻿@model DogsClub.WebUI.Models.DogsPhoto
+@{
+    List<SelectListItem> AllDogs = new List<SelectListItem>();
+    if (ViewData["AllDogs"] != null)
+    {
+        var a = ViewData["AllDogs"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (a != null)
+        {
+            AllDogs.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id != Model.DogId ? false : true }));
+        }
+    }
+}
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="containerDogDelete">
+    <div class="HeaderNameDelete">Хотите удалить @Html.DisplayFor(model => model.Id)</div>
+    @using (Html.BeginForm("Delete", "Images", FormMethod.Post))
+    {
+        @Html.Hidden("Id", Model.Id)
+    <button name="Confirm" class="btn btn-info newbtn-info newPhoto" value="true">Да</button>
+    <button name="Confirm" class="btn btn-info newbtn-info" value="false">Нет</button>
+    }
+</div>
+

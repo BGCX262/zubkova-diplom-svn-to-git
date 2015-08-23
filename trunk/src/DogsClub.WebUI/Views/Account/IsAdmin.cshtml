@@ -1,0 +1,97 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.User>
+@{
+    Layout = "~\\Views\\Shared\\_Layout3.cshtml";
+}
+
+<link href="~/Content/PatternBootstrap/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/PatternBootstrap/animate.css" rel="stylesheet" />
+<link href="~/Content/PatternBootstrap/prettyPhoto.css" rel="stylesheet" />
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+
+<div class="ConteinerUserList">
+    <table class="table table-hover" id="table">
+        <thead>
+            <tr>
+                <th class="ZagName">
+                    @Html.DisplayName("Фамилия")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Имя")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Отчество")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Email")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Телефон")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Адрес")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="ZagValue">
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td class="ZagValue">
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td class="ZagValue">
+                        @Html.DisplayFor(modelItem => item.MiddleName)
+                    </td>
+                    <td class="ZagValue">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td class="ZagValue">
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td class="ZagValue">
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EditUserAdmin", "User", new { IdUser = item.Id })" , title="Редактирование пользователя"><span class="glyphicon glyphicon-pencil glyphiconSpan"></span></a>
+                        <a href="@Url.Action("DefaultPassword", "User", new { IdUser = item.Id })" , title="Сбросить пароль"><span class="glyphicon glyphicon-lock glyphiconSpan"></span></a>
+                        <a href="@Url.Action("DeleteUsers", "User", new { IdUser = item.Id })" , title="Удалить"><span class="glyphicon glyphicon-fire glyphiconSpan"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section script {
+
+<script src="~/Scripts/PatternBootstrap/jquery-1.10.2.js"></script>
+<script src="~/Scripts/PatternBootstrap/bootstrap.js"></script>
+<script src="~/Scripts/PatternBootstrap/wow.min.js"></script>
+<script src="~/Scripts/PatternBootstrap/jquery.easing.min.js"></script>
+<script src="~/Scripts/PatternBootstrap/jquery.prettyPhoto.js"></script>
+<script src="~/Scripts/PatternBootstrap/custom.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").dataTable({
+                "language": {
+                    "lengthMenu": "Отображать _MENU_ записей на странице",
+                    "zeroRecords": "Извините, таблица пуста",
+                    "info": "Страница _PAGE_ из _PAGES_",
+                    "infoEmpty": "Нет доступных записей",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "next": "Следующая страница",
+                        "previous": "Предыдущая страница"
+                    },
+                    "search": "Найти"
+                }
+            });
+        });
+    </script>
+}

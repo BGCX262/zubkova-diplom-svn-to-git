@@ -1,0 +1,27 @@
+﻿@model DogsClub.WebUI.Models.Dog
+@{
+    Layout = "/Views/Shared/_Layout2.cshtml";
+}
+@{
+    List<SelectListItem> AllDog = new List<SelectListItem>();
+    if (ViewData["AllDog"] != null)
+    {
+        var a = ViewData["AllDog"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (a != null)
+        {
+            AllDog.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString() }));
+        }
+    }
+}
+<div class="TypeDog">
+
+    <div class="ConteinerChengeUser">
+        @using (Html.BeginForm("AddPhotoDogs", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file" id="photoDog" />
+            <span class="NameDog">Питомец</span>
+            @Html.DropDownList("idDog", AllDog, new { @class = "dropdownListDogs" })
+            <input id="submitAddDogs" type="submit" value="Добавить" />
+        }
+    </div>
+</div>

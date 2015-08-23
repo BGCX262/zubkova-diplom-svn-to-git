@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.MedicalCare>
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<table class="table table-hover">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.DateCare)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.GetDog.Name)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.GetDog.GetUser.Email)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Редактировать", "Edit", "MedicalCare", new { id = item.Id }, false) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+@*@section script{
+        <script src="~/DatePicker/DataPicker(1-10).js"></script>
+        <script src="~/DatePicker/DataPicker(1-11).js"></script>
+        <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script>
+            $('#DateCare').datepicker({
+                dateFormat: 'dd.mm.yy'
+            });
+            $(function () {
+                $("#DateCare").datepicker();
+            });
+            $('#DateCare').datepicker('option', $.datepicker.regional["ru"]);
+
+            jQuery(function ($) {
+                $.datepicker.regional['ru'] = {
+                    monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                    'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                    'Октябрь', 'Ноябрь', 'Декабрь'],
+                    dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                    firstDay: 1,
+                };
+                $.datepicker.setDefaults($.datepicker.regional['ru']);
+            });
+            $.datepicker.setDefaults($.extend(
+              $.datepicker.regional["ru"])
+            );
+        </script>
+    }*@

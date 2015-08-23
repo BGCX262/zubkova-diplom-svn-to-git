@@ -1,0 +1,128 @@
+﻿@model DogsClub.WebUI.Models.User
+
+@{
+    Layout = "~\\Views\\Shared\\_Layout3.cshtml";
+}
+
+@{
+    List<DogsClub.WebUI.Models.Role> allRoles = new List<DogsClub.WebUI.Models.Role>();
+    if(ViewData["AllRoles"]!= null)
+    {
+        var a = ViewData["AllRoles"] as IEnumerable<DogsClub.WebUI.Models.Role>;
+        if(a !=null)
+        {
+            allRoles.AddRange(a);
+        }
+    }
+}
+@{
+    List<SelectListItem> sexDog = new List<SelectListItem>();
+    if (ViewData["sexDog"] != null)
+    {
+        var a = ViewData["sexDog"] as IEnumerable<DogsClub.WebUI.Models.SexDog>;
+        if (a != null)
+        {
+            sexDog.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id.ToString() != Model.GetSex ? false : true }));
+        }
+    }
+}
+<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+<div class="newUserConteiner">
+     @using (Html.BeginForm("EditUserAdmin", "User", FormMethod.Post, new { @class = "FormEditUsers" }))
+    {
+        @Html.HiddenFor(model => Model.Id);
+        @Html.AntiForgeryToken()
+        <div class="ConteinerChengeUser">
+            <div class="headerEditUser">@Html.DisplayFor(model => model.Email)</div>
+            <div class="NamePersonCab ">Фамилия</div>
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab ">Имя</div>
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+
+            <div class="NamePersonCab ">Отчество</div>
+            @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab">Пол</div>
+            @Html.DropDownList("GetSexDog", sexDog, new { @class = "newValuePersonCab" })
+
+            <div class="NamePersonCab ">Дата рождения</div>
+            @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab ">Email</div>
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab ">Пароль</div>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab ">Телефон</div>
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab ">Дата регистрации</div>
+            @Html.EditorFor(model => model.RegistrationDate, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.RegistrationDate, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab ">Город</div>
+            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+
+
+            <div class="NamePersonCab ">Адресс</div>
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "newValuePersonCab" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+            <div class="NamePersonCab">Роли</div>
+                <ul class="ulRole">
+                    @foreach (var role in allRoles)
+                    {
+                        string isChecked = Model.GetRoleUser != null && Model.GetRoleUser.Select(t => t.Name).Contains(role.Name) ? "checked" : "";
+                        <li class="liRole">
+                            <input type="checkbox" name="checkedRole" value="@role.Id" @isChecked />
+                            @role.Name
+                        </li>
+                    }
+                </ul>
+
+                <input type="submit" value="Сохранить" class="btn btn-info" id="newSubmit" />
+            </div>
+    }
+</div>
+@section script{
+    <script src="~/DatePicker/DataPicker(1-10).js"></script>
+    <script src="~/DatePicker/DataPicker(1-11).js"></script>
+    <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $('#BirthDate').datepicker({
+            dateFormat: 'dd.mm.yy'
+        });
+        $(function () {
+            $("#BirthDate").datepicker();
+        });
+        $('#BirthDate').datepicker('option', $.datepicker.regional["ru"]);
+
+        jQuery(function ($) {
+            $.datepicker.regional['ru'] = {
+                monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь'],
+                dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                firstDay: 1,
+            };
+            $.datepicker.setDefaults($.datepicker.regional['ru']);
+        });
+        $.datepicker.setDefaults($.extend(
+          $.datepicker.regional["ru"])
+        );
+    </script>
+}

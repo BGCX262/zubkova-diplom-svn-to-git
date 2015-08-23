@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.DogsPhoto>
+@{
+    List<SelectListItem> AllDogs = new List<SelectListItem>();
+    if (ViewData["AllDogs"] != null)
+    {
+        var a = ViewData["AllDogs"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (a != null)
+        {
+            AllDogs.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString() }));
+        }
+    }
+}
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="TypeDog">
+    <div class="ConteinerChengeUser">
+        <div class="SearchForm">
+            @using (Html.BeginForm("AllPhotoDogsUser", "Images", FormMethod.Post))
+            {
+                <span class="">Выберите питомца</span>
+                @Html.DropDownList("IdDog", AllDogs, new { @class = "ValuePersonCab newDropDown checkDog" })
+                <input id="submitCheckDog" type="submit" value="ОК" />
+            }
+        </div>
+        <div class="AddPhotoDog">
+            @Html.ActionLink("Добавить фотографии", "AddPhotoDogs", "Images", new { @class = "btn btn-info", @id = "newKnopkaAdd" })
+        </div>
+    </div>
+</div>
+<div id="links">
+    <div class="selectPhotoDogs">
+        @if (Model == null)
+        {
+            <div>Фотографии отсутсвуют</div>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <div class="conteinerShowPhoto">
+                    <div class="PhotoDog">
+                        <img src="@Url.Action("GetPhotoDogs", "Images", new { IdPhoto = item.Id })" width="220" height="150" />
+                    </div>
+                    <div class="Panel">
+                        <a href="@Url.Action("PrintPhoto", "Images", new { IdPhoto = item.Id })" , title="Просмотр"><span class="glyphicon glyphicon-zoom-in styleIcon"></span></a>
+                        <a href="@Url.Action("ChengePhoto", "Images", new { IdPhoto = item.Id })" , title="Изменение"><span class="glyphicon glyphicon-pencil styleIcon"></span></a>
+                        <a href="@Url.Action("Delete", "Images", new { IdPhoto = item.Id })" , title="Удаление"><span class="glyphicon glyphicon-remove styleIcon"></span></a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+

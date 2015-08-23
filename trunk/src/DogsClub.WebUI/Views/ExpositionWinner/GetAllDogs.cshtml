@@ -1,0 +1,94 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+@{
+    ViewBag.Title = "GetAllDogs";
+    List<DogsClub.WebUI.Models.ExpositionWinner> allWinner = new List<DogsClub.WebUI.Models.ExpositionWinner>();
+    if (Model.GetWinners.Count != 0) 
+    {
+        for (int i = 0; i < Model.GetWinners.Count; i++)
+        {
+            for (int t = 0; t < Model.GetWinners[i].GetExpositionWinner.Count; t++)
+            {
+                allWinner.Add(Model.GetWinners[i].GetExpositionWinner[t]);
+            }
+        }
+    }
+  }
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<div>
+    <div class="newConteinerAddExposition">
+             <span class="expositionWinner">
+                @Html.ActionLink("Добавить победителя", "Add", new { idExpoition = Model.Id }, new { @class = "btn btn-info", @id = "addExpositionWinner" })
+            </span>
+            @Html.DisplayFor(modelItem => modelItem.Name)
+            <span class="timeExposition">
+                @Html.DisplayFor(modelItem => modelItem.DateStart)
+            </span>
+</div>
+</div>
+<div class="ConteinerAllwinners">
+        <table class="table table-hover" id="table">
+            <thead>
+                <tr>
+                    <th class="ZagName">
+                        @Html.DisplayName("Питомец")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Хозяин")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Место")
+                    </th>
+                    <th class="ZagName">
+                        @Html.DisplayName("Награда")
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (DogsClub.WebUI.Models.ExpositionWinner item in allWinner)
+            {
+                <tr>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.GetDog.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.GetDog.GetUser.Email)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.WinnerPlace)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.GetAvard.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, idExposition =Model.Id }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id }) 
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@section script {
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").dataTable({
+                "language": {
+                    "lengthMenu": "Отображать _MENU_ записей на странице",
+                    "zeroRecords": "Извините, таблица пуста",
+                    "info": "Страница _PAGE_ из _PAGES_",
+                    "infoEmpty": "Нет доступных записей",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "next": "Следующая страница",
+                        "previous": "Предыдущая страница"
+                    },
+                    "search": "Найти"
+                }
+            });
+        });
+    </script>
+}

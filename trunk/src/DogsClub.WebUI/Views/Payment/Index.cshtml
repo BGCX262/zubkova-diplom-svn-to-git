@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+
+<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+<div>
+    <div class="ConteinerAddExposition">
+        @Html.Action("Add", "Payment")
+    </div>
+    <div class="ConteinerGetAllExposition">
+        @Html.Action("GetAll", "Payment")
+    </div>
+</div>
+@section script{
+    <script src="~/DatePicker/DataPicker(1-10).js"></script>
+    <script src="~/DatePicker/DataPicker(1-11).js"></script>
+    <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $('#PayDate').datepicker({
+            dateFormat: 'dd.mm.yy'
+        });
+        $(function () {
+            $("#PayDate").datepicker();
+        });
+        $('#PayDate').datepicker('option', $.datepicker.regional["ru"]);
+
+        jQuery(function ($) {
+            $.datepicker.regional['ru'] = {
+                monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь'],
+                dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                firstDay: 1,
+            };
+            $.datepicker.setDefaults($.datepicker.regional['ru']);
+        });
+        $.datepicker.setDefaults($.extend(
+          $.datepicker.regional["ru"])
+        );
+    </script>
+}
+
+

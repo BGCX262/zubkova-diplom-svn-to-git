@@ -1,0 +1,13 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+<div>
+    <div class="conteinerAddAvard">
+        @Html.Action("Add", "Avard")
+    </div>
+    <div class="newConteinerVaccination">
+        @Html.Action("GetAll", "Avard")
+    </div>
+</div>
+

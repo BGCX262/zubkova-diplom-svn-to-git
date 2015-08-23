@@ -1,0 +1,44 @@
+﻿@model List<DogsClub.WebUI.Models.Payment>
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+    DateTime startPeriod = (DateTime)ViewData["startPeriod"];
+    DateTime endPeriod = (DateTime)ViewData["endPeriod"];
+    DogsClub.WebUI.Models.PaymentType type = ViewData["itemType"] as DogsClub.WebUI.Models.PaymentType;
+    }
+<div class="ConteinerReportVaccination">
+    <div class="FormReportVaccination">
+        <span class="headerWer">Отчет по типу платежа: @type.Name </span>c @startPeriod.ToLongDateString() по @endPeriod.ToLongDateString()
+    </div>
+    <div class="graphic-wrap">
+        <table class="table table-hover" id="tableReport">
+            <thead>
+                <tr>
+                    <td class="ZagName">
+                        ФИО участника клуба
+                    </td>
+                    <td class="ZagName">
+                        Дата платежа
+                    </td>
+                    <td class="ZagName">
+                        Размер платежа
+                    </td>
+                    <td class="ZagName">
+                        Комментарий к платежу
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="ZagValue2">@item.GetUser.LastName @item.GetUser.FirstName @item.GetUser.MiddleName</td>
+                        <td class="ZagValue2">@item.PayDate.ToShortDateString()</td>
+                        <td class="ZagValue2">@item.PaySize</td>
+                        <td class="ZagValue2">@item.Description</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

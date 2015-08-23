@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ABE86C46-DC36-49B5-A56A-0173AD76F628}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DogsClub.BLL</RootNamespace>
+    <AssemblyName>DogsClub.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Yarn">
+      <HintPath>..\packages\Yarn.0.8.19\lib\net40\Yarn.dll</HintPath>
+    </Reference>
+    <Reference Include="Yarn.StructureMap">
+      <HintPath>..\packages\Yarn.StructureMap.0.8.19\lib\net40\Yarn.StructureMap.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAvardsService.cs" />
+    <Compile Include="Abstract\IDogSalesService.cs" />
+    <Compile Include="Abstract\IDogsPhotoService.cs" />
+    <Compile Include="Abstract\IExpositionMembersService.cs" />
+    <Compile Include="Abstract\IExpositionsRequestsService.cs" />
+    <Compile Include="Abstract\IExpositionWinnersService.cs" />
+    <Compile Include="Abstract\IMedicalCaresService.cs" />
+    <Compile Include="Abstract\IPaymentsService.cs" />
+    <Compile Include="Abstract\IPaymentTypesService.cs" />
+    <Compile Include="Abstract\IReportsService.cs" />
+    <Compile Include="Abstract\IBaseService.cs" />
+    <Compile Include="Abstract\IDogsService.cs" />
+    <Compile Include="Abstract\IDogTypesService.cs" />
+    <Compile Include="Abstract\IExpositionsService.cs" />
+    <Compile Include="Abstract\IStatisticService.cs" />
+    <Compile Include="Abstract\IUserService.cs" />
+    <Compile Include="Abstract\IVaccinationsService.cs" />
+    <Compile Include="AvardsService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="DogSalesService.cs" />
+    <Compile Include="DogsPhotoService.cs" />
+    <Compile Include="DogsService.cs" />
+    <Compile Include="DogTypesService.cs" />
+    <Compile Include="ExpositionMembersService.cs" />
+    <Compile Include="ExpositionService.cs" />
+    <Compile Include="ExpositionsRequestsService.cs" />
+    <Compile Include="ExpositionWinnersService.cs" />
+    <Compile Include="Abstract\INewsService.cs" />
+    <Compile Include="MedicalCaresService.cs" />
+    <Compile Include="NewsService.cs" />
+    <Compile Include="PaymentsService.cs" />
+    <Compile Include="PaymentTypesService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportsService.cs" />
+    <Compile Include="StatisticService.cs" />
+    <Compile Include="UsersService.cs" />
+    <Compile Include="VaccinationsService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DogsClub.DomainModel\DogsClub.DomainModel.csproj">
+      <Project>{ee1f9d14-ff9f-4074-b5be-a21453404928}</Project>
+      <Name>DogsClub.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DogsClub.Shared\DogsClub.Shared.csproj">
+      <Project>{457583d3-e929-443b-803e-74ee26002881}</Project>
+      <Name>DogsClub.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DogsClub\DogsClub.DAL.csproj">
+      <Project>{d04e7eb4-880d-4b56-8ce3-55f41d311bcf}</Project>
+      <Name>DogsClub.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,37 @@
+﻿@model  List<DogsClub.WebUI.Models.Payment>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="ConteinerReportVaccination">
+    <div class="FormReportVaccination">
+        <span class="headerWer">Платежи</span>
+    </div>
+    <div class="graphic-wrap">
+        <table class="table table-hover" id="tableReport">
+            <thead>
+                <tr>
+                    <th class="ZagName">
+                        Дата платежа
+                    </th>
+                    <th class="ZagName">
+                        Тип платежа
+                    </th>
+                    <th class="ZagName">
+                        Размер платежа
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="ZagValue2">@item.PayDate</td>
+                        <td class="ZagValue2">@item.GetType.Name</td>
+                        <td class="ZagValue2">@item.PaySize</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.Payment>
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<table class="table table-hover">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="ZagValue2">
+                @item.GetUser.LastName  @item.GetUser.FirstName  @item.GetUser.MiddleName
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.GetType.Name)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.PayDate)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.PaySize)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Редактировать", "Edit", "Payment", new { id = item.Id }, false) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

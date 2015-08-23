@@ -1,0 +1,100 @@
+﻿@model DogsClub.WebUI.Models.User
+@{
+    Layout = "~\\Views\\Shared\\_Layout5.cshtml";
+    List<DogsClub.WebUI.Models.Dog> dog = Model.Dogs.ToList();
+}
+<div>
+    <div class="newConteinerRex22">
+        <div class="poleNameExposition">Фамилия :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.LastName)
+        </div>
+        <div class="poleNameExposition">Имя :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.FirstName)
+        </div>
+        <div class="poleNameExposition">Отчество :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.MiddleName)
+        </div>
+        <div class="poleNameExposition">Пол :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.GetSex)
+        </div>
+        <div class="poleNameExposition">Д.р :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.BirthDate)
+        </div>
+        <div class="poleNameExposition">Почта :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.Email)
+        </div>
+        <div class="poleNameExposition">Телефон :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.Phone)
+        </div>
+        <div class="poleNameExposition">Город :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.City)
+        </div>
+        <div class="poleNameExposition">Адрес :</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.Address)
+        </div>
+        <div class="poleNameExposition">Зарегистрирован</div>
+        <div class="NameExposirtion">
+            @Html.DisplayFor(m => m.RegistrationDate)
+        </div>
+    </div>
+    <div>
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <div class="ConteinerExpositionHome newNoBoreder">
+                        <div class="ExpositionHeader">ПИТОМЦЫ</div>
+                        <div class="TopDogs newNoBoreder">
+                            @foreach (var item in Model.Dogs)
+                            {
+                                <div class="newMarg">
+                                    <span class="poleName">
+                                        @Html.ActionLink(item.Name, "ShowItemDogType", "DogType", new { @class = "newpoleName" })
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="ConteinerExpositionHome newNoBoreder">
+                        <div class="ExpositionHeader">ПОБЕДЫ</div>
+                        <div class="TopDogs newNoBoreder">
+                            @foreach (var item in Model.GetWinners)
+                            {
+                                <div class="newMarg">
+                                    <span class="poleName">
+                                        @Html.ActionLink(item.GetExposition.Name, "ShowItemDogType", "DogType", new { @class = "newpoleName" })
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="ConteinerExpositionHome newNoBoreder">
+                        <div class="ExpositionHeader">НАГРАДЫ</div>
+                        <div class="TopDogs newNoBoreder">
+                            @foreach (var item in Model.GetAvards)
+                            {
+                                <div class="newMarg">
+                                    <span class="poleName">
+                                        @Html.ActionLink(item.Name, "ShowItemDogType", "DogType", new { @class = "newpoleName" })
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

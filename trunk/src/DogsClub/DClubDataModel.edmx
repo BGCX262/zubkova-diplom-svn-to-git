@@ -1,0 +1,1396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DClubEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Avards">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Avatar" Type="varbinary(max)" />
+          <Property Name="AvatarMimeType" Type="nvarchar" MaxLength="20" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+          <Property Name="WasSold" Type="bit" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="IdDogType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DogsForSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ClubCommission" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IdDog" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DogsPhotos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhotoData" Type="varbinary(max)" />
+          <Property Name="MimeType" Type="nvarchar" MaxLength="20" />
+          <Property Name="DogId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DogTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ExpositionMembers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdExposition" Type="int" Nullable="false" />
+          <Property Name="IdDog" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expositions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ExpositionsRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdExposition" Type="int" Nullable="false" />
+          <Property Name="IdDog" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExpositionWinners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdExpositionMember" Type="int" Nullable="false" />
+          <Property Name="IdAvard" Type="int" Nullable="false" />
+          <Property Name="WinnerPlace" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalCares">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCare" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdDog" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="NewsDate" Type="datetime" />
+          <Property Name="NewsText" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaySize" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PayDate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentsPeriodTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdPeriod" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SalesHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDog" Type="int" Nullable="false" />
+          <Property Name="OldOwnerId" Type="int" Nullable="false" />
+          <Property Name="NewOwnerId" Type="int" Nullable="false" />
+          <Property Name="CostPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SaleDate" Type="datetime" Nullable="false" />
+          <Property Name="ClubCommission" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Avatar" Type="varbinary(max)" />
+          <Property Name="AvatarMimeType" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sex" Type="int" />
+        </EntityType>
+        <EntityType Name="UsersRoles">
+          <Key>
+            <PropertyRef Name="IdUsersRoles" />
+          </Key>
+          <Property Name="IdUsersRoles" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vaccinations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateVacination" Type="datetime" />
+          <Property Name="IdDog" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Dogs__IdDogType__7B5B524B">
+          <End Role="DogTypes" Type="Self.DogTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DogTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogs">
+              <PropertyRef Name="IdDogType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dogs__OwnerId__7A672E12">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogs">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DogsForSa__IdDog__1EA48E88">
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DogsForSale" Type="Self.DogsForSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DogsForSale">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DogsPhoto__DogId__7E37BEF6">
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DogsPhotos" Type="Self.DogsPhotos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DogsPhotos">
+              <PropertyRef Name="DogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdAva__09A971A2">
+          <End Role="Avards" Type="Self.Avards" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionWinners" Type="Self.ExpositionWinners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avards">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionWinners">
+              <PropertyRef Name="IdAvard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdDog__05D8E0BE">
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionMembers" Type="Self.ExpositionMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionMembers">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdDog__0D7A0286">
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionsRequests" Type="Self.ExpositionsRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionsRequests">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdExp__04E4BC85">
+          <End Role="Expositions" Type="Self.Expositions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionMembers" Type="Self.ExpositionMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expositions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionMembers">
+              <PropertyRef Name="IdExposition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdExp__08B54D69">
+          <End Role="ExpositionMembers" Type="Self.ExpositionMembers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionWinners" Type="Self.ExpositionWinners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpositionMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionWinners">
+              <PropertyRef Name="IdExpositionMember" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdExp__0C85DE4D">
+          <End Role="Expositions" Type="Self.Expositions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionsRequests" Type="Self.ExpositionsRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expositions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionsRequests">
+              <PropertyRef Name="IdExposition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalCa__IdDog__1332DBDC">
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MedicalCares" Type="Self.MedicalCares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCares">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__IdType__1BC821DD">
+          <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__UserId__1AD3FDA4">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentTy__IdPer__17F790F9">
+          <End Role="PaymentsPeriodTypes" Type="Self.PaymentsPeriodTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentsPeriodTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentTypes">
+              <PropertyRef Name="IdPeriod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesHist__IdDog__2180FB33">
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="1" />
+          <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHistory">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesHist__NewOw__236943A5">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHistory">
+              <PropertyRef Name="NewOwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesHist__OldOw__22751F6C">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHistory">
+              <PropertyRef Name="OldOwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersRole__IdRol__75A278F5">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersRole__IdUse__74AE54BC">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vaccinati__IdDog__10566F31">
+          <End Role="Dogs" Type="Self.Dogs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vaccinations" Type="Self.Vaccinations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vaccinations">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DClubEntitiesStoreContainer">
+          <EntitySet Name="Avards" EntityType="Self.Avards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dogs" EntityType="Self.Dogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DogsForSale" EntityType="Self.DogsForSale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DogsPhotos" EntityType="Self.DogsPhotos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DogTypes" EntityType="Self.DogTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpositionMembers" EntityType="Self.ExpositionMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expositions" EntityType="Self.Expositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpositionsRequests" EntityType="Self.ExpositionsRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpositionWinners" EntityType="Self.ExpositionWinners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalCares" EntityType="Self.MedicalCares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentsPeriodTypes" EntityType="Self.PaymentsPeriodTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesHistory" EntityType="Self.SalesHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaccinations" EntityType="Self.Vaccinations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Dogs__IdDogType__7B5B524B" Association="Self.FK__Dogs__IdDogType__7B5B524B">
+            <End Role="DogTypes" EntitySet="DogTypes" />
+            <End Role="Dogs" EntitySet="Dogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dogs__OwnerId__7A672E12" Association="Self.FK__Dogs__OwnerId__7A672E12">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dogs" EntitySet="Dogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DogsForSa__IdDog__1EA48E88" Association="Self.FK__DogsForSa__IdDog__1EA48E88">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="DogsForSale" EntitySet="DogsForSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DogsPhoto__DogId__7E37BEF6" Association="Self.FK__DogsPhoto__DogId__7E37BEF6">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="DogsPhotos" EntitySet="DogsPhotos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdAva__09A971A2" Association="Self.FK__Expositio__IdAva__09A971A2">
+            <End Role="Avards" EntitySet="Avards" />
+            <End Role="ExpositionWinners" EntitySet="ExpositionWinners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdDog__05D8E0BE" Association="Self.FK__Expositio__IdDog__05D8E0BE">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="ExpositionMembers" EntitySet="ExpositionMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdDog__0D7A0286" Association="Self.FK__Expositio__IdDog__0D7A0286">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="ExpositionsRequests" EntitySet="ExpositionsRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdExp__04E4BC85" Association="Self.FK__Expositio__IdExp__04E4BC85">
+            <End Role="Expositions" EntitySet="Expositions" />
+            <End Role="ExpositionMembers" EntitySet="ExpositionMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdExp__08B54D69" Association="Self.FK__Expositio__IdExp__08B54D69">
+            <End Role="ExpositionMembers" EntitySet="ExpositionMembers" />
+            <End Role="ExpositionWinners" EntitySet="ExpositionWinners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdExp__0C85DE4D" Association="Self.FK__Expositio__IdExp__0C85DE4D">
+            <End Role="Expositions" EntitySet="Expositions" />
+            <End Role="ExpositionsRequests" EntitySet="ExpositionsRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalCa__IdDog__1332DBDC" Association="Self.FK__MedicalCa__IdDog__1332DBDC">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="MedicalCares" EntitySet="MedicalCares" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__IdType__1BC821DD" Association="Self.FK__Payments__IdType__1BC821DD">
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__UserId__1AD3FDA4" Association="Self.FK__Payments__UserId__1AD3FDA4">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentTy__IdPer__17F790F9" Association="Self.FK__PaymentTy__IdPer__17F790F9">
+            <End Role="PaymentsPeriodTypes" EntitySet="PaymentsPeriodTypes" />
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesHist__IdDog__2180FB33" Association="Self.FK__SalesHist__IdDog__2180FB33">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="SalesHistory" EntitySet="SalesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesHist__NewOw__236943A5" Association="Self.FK__SalesHist__NewOw__236943A5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SalesHistory" EntitySet="SalesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesHist__OldOw__22751F6C" Association="Self.FK__SalesHist__OldOw__22751F6C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SalesHistory" EntitySet="SalesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersRole__IdRol__75A278F5" Association="Self.FK__UsersRole__IdRol__75A278F5">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersRole__IdUse__74AE54BC" Association="Self.FK__UsersRole__IdUse__74AE54BC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinati__IdDog__10566F31" Association="Self.FK__Vaccinati__IdDog__10566F31">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="Vaccinations" EntitySet="Vaccinations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DClubEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Avard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ExpositionWinners" Relationship="Self.FK__Expositio__IdAva__0B91BA14" FromRole="Avards" ToRole="ExpositionWinners" />
+        </EntityType>
+        <EntityType Name="Dog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <Property Name="WasSold" Type="Boolean" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="IdDogType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DogType" Relationship="Self.FK__Dogs__IdDogType__7D439ABD" FromRole="Dogs" ToRole="DogTypes" />
+          <NavigationProperty Name="DogsForSales" Relationship="Self.FK__DogsForSa__IdDog__1AD3FDA4" FromRole="Dogs" ToRole="DogsForSale" />
+          <NavigationProperty Name="DogsPhotos" Relationship="Self.FK__DogsPhoto__DogId__00200768" FromRole="Dogs" ToRole="DogsPhotos" />
+          <NavigationProperty Name="ExpositionMembers" Relationship="Self.FK__Expositio__IdDog__07C12930" FromRole="Dogs" ToRole="ExpositionMembers" />
+          <NavigationProperty Name="ExpositionsRequests" Relationship="Self.FK__Expositio__IdDog__0F624AF8" FromRole="Dogs" ToRole="ExpositionsRequests" />
+          <NavigationProperty Name="SalesHistories" Relationship="Self.FK__SalesHist__IdDog__1DB06A4F" FromRole="Dogs" ToRole="SalesHistory" />
+          <NavigationProperty Name="Vaccinations" Relationship="Self.FK__Vaccinati__IdDog__123EB7A3" FromRole="Dogs" ToRole="Vaccinations" />
+          <Property Name="AvatarMimeType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MedicalCares" Relationship="DClubEntities.FK__MedicalCa__IdDog__29221CFB" FromRole="Dog" ToRole="MedicalCare" />
+          <NavigationProperty Name="User" Relationship="DClubEntities.FK__Dogs__OwnerId__46B27FE2" FromRole="Dog" ToRole="User" />
+        </EntityType>
+        <EntityType Name="DogsForSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ClubCommission" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IdDog" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dog" Relationship="Self.FK__DogsForSa__IdDog__1AD3FDA4" FromRole="DogsForSale" ToRole="Dogs" />
+        </EntityType>
+        <EntityType Name="DogsPhoto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhotoData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MimeType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DogId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dog" Relationship="Self.FK__DogsPhoto__DogId__00200768" FromRole="DogsPhotos" ToRole="Dogs" />
+        </EntityType>
+        <EntityType Name="DogType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dogs" Relationship="Self.FK__Dogs__IdDogType__7D439ABD" FromRole="DogTypes" ToRole="Dogs" />
+        </EntityType>
+        <EntityType Name="ExpositionMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdExposition" Type="Int32" Nullable="false" />
+          <Property Name="IdDog" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dog" Relationship="Self.FK__Expositio__IdDog__07C12930" FromRole="ExpositionMembers" ToRole="Dogs" />
+          <NavigationProperty Name="Exposition" Relationship="Self.FK__Expositio__IdExp__06CD04F7" FromRole="ExpositionMembers" ToRole="Expositions" />
+          <NavigationProperty Name="ExpositionWinners" Relationship="Self.FK__Expositio__IdExp__0A9D95DB" FromRole="ExpositionMembers" ToRole="ExpositionWinners" />
+        </EntityType>
+        <EntityType Name="Exposition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ExpositionMembers" Relationship="Self.FK__Expositio__IdExp__06CD04F7" FromRole="Expositions" ToRole="ExpositionMembers" />
+          <NavigationProperty Name="ExpositionsRequests" Relationship="Self.FK__Expositio__IdExp__0E6E26BF" FromRole="Expositions" ToRole="ExpositionsRequests" />
+        </EntityType>
+        <EntityType Name="ExpositionsRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdExposition" Type="Int32" Nullable="false" />
+          <Property Name="IdDog" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dog" Relationship="Self.FK__Expositio__IdDog__0F624AF8" FromRole="ExpositionsRequests" ToRole="Dogs" />
+          <NavigationProperty Name="Exposition" Relationship="Self.FK__Expositio__IdExp__0E6E26BF" FromRole="ExpositionsRequests" ToRole="Expositions" />
+        </EntityType>
+        <EntityType Name="ExpositionWinner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdExpositionMember" Type="Int32" Nullable="false" />
+          <Property Name="IdAvard" Type="Int32" Nullable="false" />
+          <Property Name="WinnerPlace" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avard" Relationship="Self.FK__Expositio__IdAva__0B91BA14" FromRole="ExpositionWinners" ToRole="Avards" />
+          <NavigationProperty Name="ExpositionMember" Relationship="Self.FK__Expositio__IdExp__0A9D95DB" FromRole="ExpositionWinners" ToRole="ExpositionMembers" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaySize" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PayDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PaymentType" Relationship="Self.FK__Payments__IdType__17F790F9" FromRole="Payments" ToRole="PaymentTypes" />
+          <NavigationProperty Name="User" Relationship="DClubEntities.FK__Payments__UserId__671F4F74" FromRole="Payment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__IdType__17F790F9" FromRole="PaymentTypes" ToRole="Payments" />
+          <Property Name="IdPeriod" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PaymentsPeriodType" Relationship="DClubEntities.FK__PaymentTy__IdPer__2DE6D218" FromRole="PaymentType" ToRole="PaymentsPeriodType" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersRoles" Relationship="Self.FK__UsersRole__IdRol__778AC167" FromRole="Roles" ToRole="UsersRoles" />
+        </EntityType>
+        <EntityType Name="SalesHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDog" Type="Int32" Nullable="false" />
+          <Property Name="OldOwnerId" Type="Int32" Nullable="false" />
+          <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ClubCommission" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Dog" Relationship="Self.FK__SalesHist__IdDog__1DB06A4F" FromRole="SalesHistory" ToRole="Dogs" />
+          <Property Name="NewOwnerId" Type="Int32" Nullable="false" />
+          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="DClubEntities.FK__SalesHist__NewOw__6FB49575" FromRole="SalesHistory" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="DClubEntities.FK__SalesHist__OldOw__6EC0713C" FromRole="SalesHistory" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UsersRole">
+          <Key>
+            <PropertyRef Name="IdUsersRoles" />
+          </Key>
+          <Property Name="IdUsersRoles" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__UsersRole__IdRol__778AC167" FromRole="UsersRoles" ToRole="Roles" />
+          <NavigationProperty Name="User" Relationship="DClubEntities.FK__UsersRole__IdUse__40F9A68C" FromRole="UsersRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Vaccination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateVacination" Type="DateTime" Precision="3" />
+          <Property Name="IdDog" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dog" Relationship="Self.FK__Vaccinati__IdDog__123EB7A3" FromRole="Vaccinations" ToRole="Dogs" />
+        </EntityType>
+        <Association Name="FK__Expositio__IdAva__0B91BA14">
+          <End Role="Avards" Type="Self.Avard" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionWinners" Type="Self.ExpositionWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avards">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionWinners">
+              <PropertyRef Name="IdAvard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dogs__IdDogType__7D439ABD">
+          <End Role="DogTypes" Type="Self.DogType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dogs" Type="Self.Dog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DogTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogs">
+              <PropertyRef Name="IdDogType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DogsForSa__IdDog__1AD3FDA4">
+          <End Role="Dogs" Type="Self.Dog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DogsForSale" Type="Self.DogsForSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DogsForSale">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DogsPhoto__DogId__00200768">
+          <End Role="Dogs" Type="Self.Dog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DogsPhotos" Type="Self.DogsPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DogsPhotos">
+              <PropertyRef Name="DogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdDog__07C12930">
+          <End Role="Dogs" Type="Self.Dog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionMembers" Type="Self.ExpositionMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionMembers">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdDog__0F624AF8">
+          <End Role="Dogs" Type="Self.Dog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionsRequests" Type="Self.ExpositionsRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionsRequests">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesHist__IdDog__1DB06A4F">
+          <End Role="Dogs" Type="Self.Dog" Multiplicity="1" />
+          <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHistory">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vaccinati__IdDog__123EB7A3">
+          <End Role="Dogs" Type="Self.Dog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vaccinations" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vaccinations">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdExp__06CD04F7">
+          <End Role="Expositions" Type="Self.Exposition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionMembers" Type="Self.ExpositionMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expositions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionMembers">
+              <PropertyRef Name="IdExposition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdExp__0A9D95DB">
+          <End Role="ExpositionMembers" Type="Self.ExpositionMember" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionWinners" Type="Self.ExpositionWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpositionMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionWinners">
+              <PropertyRef Name="IdExpositionMember" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expositio__IdExp__0E6E26BF">
+          <End Role="Expositions" Type="Self.Exposition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpositionsRequests" Type="Self.ExpositionsRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expositions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpositionsRequests">
+              <PropertyRef Name="IdExposition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__IdType__17F790F9">
+          <End Role="PaymentTypes" Type="Self.PaymentType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersRole__IdRol__778AC167">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersRoles" Type="Self.UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avards" EntityType="Self.Avard" />
+          <EntitySet Name="Dogs" EntityType="Self.Dog" />
+          <EntitySet Name="DogsForSales" EntityType="Self.DogsForSale" />
+          <EntitySet Name="DogsPhotos" EntityType="Self.DogsPhoto" />
+          <EntitySet Name="DogTypes" EntityType="Self.DogType" />
+          <EntitySet Name="ExpositionMembers" EntityType="Self.ExpositionMember" />
+          <EntitySet Name="Expositions" EntityType="Self.Exposition" />
+          <EntitySet Name="ExpositionsRequests" EntityType="Self.ExpositionsRequest" />
+          <EntitySet Name="ExpositionWinners" EntityType="Self.ExpositionWinner" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="SalesHistories" EntityType="Self.SalesHistory" />
+          <EntitySet Name="UsersRoles" EntityType="Self.UsersRole" />
+          <EntitySet Name="Vaccinations" EntityType="Self.Vaccination" />
+          <AssociationSet Name="FK__Expositio__IdAva__0B91BA14" Association="Self.FK__Expositio__IdAva__0B91BA14">
+            <End Role="Avards" EntitySet="Avards" />
+            <End Role="ExpositionWinners" EntitySet="ExpositionWinners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dogs__IdDogType__7D439ABD" Association="Self.FK__Dogs__IdDogType__7D439ABD">
+            <End Role="DogTypes" EntitySet="DogTypes" />
+            <End Role="Dogs" EntitySet="Dogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DogsForSa__IdDog__1AD3FDA4" Association="Self.FK__DogsForSa__IdDog__1AD3FDA4">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="DogsForSale" EntitySet="DogsForSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DogsPhoto__DogId__00200768" Association="Self.FK__DogsPhoto__DogId__00200768">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="DogsPhotos" EntitySet="DogsPhotos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdDog__07C12930" Association="Self.FK__Expositio__IdDog__07C12930">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="ExpositionMembers" EntitySet="ExpositionMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdDog__0F624AF8" Association="Self.FK__Expositio__IdDog__0F624AF8">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="ExpositionsRequests" EntitySet="ExpositionsRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesHist__IdDog__1DB06A4F" Association="Self.FK__SalesHist__IdDog__1DB06A4F">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="SalesHistory" EntitySet="SalesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinati__IdDog__123EB7A3" Association="Self.FK__Vaccinati__IdDog__123EB7A3">
+            <End Role="Dogs" EntitySet="Dogs" />
+            <End Role="Vaccinations" EntitySet="Vaccinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdExp__06CD04F7" Association="Self.FK__Expositio__IdExp__06CD04F7">
+            <End Role="Expositions" EntitySet="Expositions" />
+            <End Role="ExpositionMembers" EntitySet="ExpositionMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdExp__0A9D95DB" Association="Self.FK__Expositio__IdExp__0A9D95DB">
+            <End Role="ExpositionMembers" EntitySet="ExpositionMembers" />
+            <End Role="ExpositionWinners" EntitySet="ExpositionWinners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expositio__IdExp__0E6E26BF" Association="Self.FK__Expositio__IdExp__0E6E26BF">
+            <End Role="Expositions" EntitySet="Expositions" />
+            <End Role="ExpositionsRequests" EntitySet="ExpositionsRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__IdType__17F790F9" Association="Self.FK__Payments__IdType__17F790F9">
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersRole__IdRol__778AC167" Association="Self.FK__UsersRole__IdRol__778AC167">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <EntitySet Name="MedicalCares" EntityType="DClubEntities.MedicalCare" />
+          <EntitySet Name="PaymentsPeriodTypes" EntityType="DClubEntities.PaymentsPeriodType" />
+          <AssociationSet Name="FK__MedicalCa__IdDog__29221CFB" Association="DClubEntities.FK__MedicalCa__IdDog__29221CFB">
+            <End Role="Dog" EntitySet="Dogs" />
+            <End Role="MedicalCare" EntitySet="MedicalCares" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentTy__IdPer__2DE6D218" Association="DClubEntities.FK__PaymentTy__IdPer__2DE6D218">
+            <End Role="PaymentsPeriodType" EntitySet="PaymentsPeriodTypes" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="DClubEntities.User" />
+          <AssociationSet Name="FK__Dogs__OwnerId__46B27FE2" Association="DClubEntities.FK__Dogs__OwnerId__46B27FE2">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Dog" EntitySet="Dogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__UserId__671F4F74" Association="DClubEntities.FK__Payments__UserId__671F4F74">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesHist__NewOw__6FB49575" Association="DClubEntities.FK__SalesHist__NewOw__6FB49575">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SalesHistory" EntitySet="SalesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesHist__OldOw__6EC0713C" Association="DClubEntities.FK__SalesHist__OldOw__6EC0713C">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SalesHistory" EntitySet="SalesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersRole__IdUse__40F9A68C" Association="DClubEntities.FK__UsersRole__IdUse__40F9A68C">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UsersRole" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <EntitySet Name="News" EntityType="DClubEntities.News" />
+        </EntityContainer>
+        <EntityType Name="MedicalCare">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCare" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdDog" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dog" Relationship="DClubEntities.FK__MedicalCa__IdDog__29221CFB" FromRole="MedicalCare" ToRole="Dog" />
+        </EntityType>
+        <EntityType Name="PaymentsPeriodType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentTypes" Relationship="DClubEntities.FK__PaymentTy__IdPer__2DE6D218" FromRole="PaymentsPeriodType" ToRole="PaymentType" />
+        </EntityType>
+        <Association Name="FK__MedicalCa__IdDog__29221CFB">
+          <End Type="DClubEntities.Dog" Role="Dog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DClubEntities.MedicalCare" Role="MedicalCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCare">
+              <PropertyRef Name="IdDog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentTy__IdPer__2DE6D218">
+          <End Type="DClubEntities.PaymentsPeriodType" Role="PaymentsPeriodType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DClubEntities.PaymentType" Role="PaymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentsPeriodType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentType">
+              <PropertyRef Name="IdPeriod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AvatarMimeType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="Int32" />
+          <NavigationProperty Name="Dogs" Relationship="DClubEntities.FK__Dogs__OwnerId__46B27FE2" FromRole="User" ToRole="Dog" />
+          <NavigationProperty Name="Payments" Relationship="DClubEntities.FK__Payments__UserId__671F4F74" FromRole="User" ToRole="Payment" />
+          <NavigationProperty Name="SalesHistories" Relationship="DClubEntities.FK__SalesHist__NewOw__6FB49575" FromRole="User" ToRole="SalesHistory" />
+          <NavigationProperty Name="SalesHistories1" Relationship="DClubEntities.FK__SalesHist__OldOw__6EC0713C" FromRole="User" ToRole="SalesHistory" />
+          <NavigationProperty Name="UsersRoles" Relationship="DClubEntities.FK__UsersRole__IdUse__40F9A68C" FromRole="User" ToRole="UsersRole" />
+        </EntityType>
+        <Association Name="FK__Dogs__OwnerId__46B27FE2">
+          <End Type="DClubEntities.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DClubEntities.Dog" Role="Dog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dog">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__UserId__671F4F74">
+          <End Type="DClubEntities.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DClubEntities.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesHist__NewOw__6FB49575">
+          <End Type="DClubEntities.User" Role="User" Multiplicity="1" />
+          <End Type="DClubEntities.SalesHistory" Role="SalesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHistory">
+              <PropertyRef Name="NewOwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesHist__OldOw__6EC0713C">
+          <End Type="DClubEntities.User" Role="User" Multiplicity="1" />
+          <End Type="DClubEntities.SalesHistory" Role="SalesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHistory">
+              <PropertyRef Name="OldOwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersRole__IdUse__40F9A68C">
+          <End Type="DClubEntities.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DClubEntities.UsersRole" Role="UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRole">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NewsDate" Type="DateTime" Precision="3" />
+          <Property Name="NewsText" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DClubEntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Avards">
+            <EntityTypeMapping TypeName="DClubEntities.Avard">
+              <MappingFragment StoreEntitySet="Avards">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dogs">
+            <EntityTypeMapping TypeName="DClubEntities.Dog">
+              <MappingFragment StoreEntitySet="Dogs">
+                <ScalarProperty Name="AvatarMimeType" ColumnName="AvatarMimeType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="WasSold" ColumnName="WasSold" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="IdDogType" ColumnName="IdDogType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DogsForSales">
+            <EntityTypeMapping TypeName="DClubEntities.DogsForSale">
+              <MappingFragment StoreEntitySet="DogsForSale">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ClubCommission" ColumnName="ClubCommission" />
+                <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DogsPhotos">
+            <EntityTypeMapping TypeName="DClubEntities.DogsPhoto">
+              <MappingFragment StoreEntitySet="DogsPhotos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhotoData" ColumnName="PhotoData" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="DogId" ColumnName="DogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DogTypes">
+            <EntityTypeMapping TypeName="DClubEntities.DogType">
+              <MappingFragment StoreEntitySet="DogTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpositionMembers">
+            <EntityTypeMapping TypeName="DClubEntities.ExpositionMember">
+              <MappingFragment StoreEntitySet="ExpositionMembers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdExposition" ColumnName="IdExposition" />
+                <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expositions">
+            <EntityTypeMapping TypeName="DClubEntities.Exposition">
+              <MappingFragment StoreEntitySet="Expositions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpositionsRequests">
+            <EntityTypeMapping TypeName="DClubEntities.ExpositionsRequest">
+              <MappingFragment StoreEntitySet="ExpositionsRequests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdExposition" ColumnName="IdExposition" />
+                <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpositionWinners">
+            <EntityTypeMapping TypeName="DClubEntities.ExpositionWinner">
+              <MappingFragment StoreEntitySet="ExpositionWinners">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdExpositionMember" ColumnName="IdExpositionMember" />
+                <ScalarProperty Name="IdAvard" ColumnName="IdAvard" />
+                <ScalarProperty Name="WinnerPlace" ColumnName="WinnerPlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="DClubEntities.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaySize" ColumnName="PaySize" />
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="DClubEntities.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentTypes">
+                <ScalarProperty Name="IdPeriod" ColumnName="IdPeriod" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DClubEntities.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesHistories">
+            <EntityTypeMapping TypeName="DClubEntities.SalesHistory">
+              <MappingFragment StoreEntitySet="SalesHistory">
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="NewOwnerId" ColumnName="NewOwnerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+                <ScalarProperty Name="OldOwnerId" ColumnName="OldOwnerId" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="ClubCommission" ColumnName="ClubCommission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersRoles">
+            <EntityTypeMapping TypeName="DClubEntities.UsersRole">
+              <MappingFragment StoreEntitySet="UsersRoles">
+                <ScalarProperty Name="IdUsersRoles" ColumnName="IdUsersRoles" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaccinations">
+            <EntityTypeMapping TypeName="DClubEntities.Vaccination">
+              <MappingFragment StoreEntitySet="Vaccinations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateVacination" ColumnName="DateVacination" />
+                <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalCares">
+            <EntityTypeMapping TypeName="DClubEntities.MedicalCare">
+              <MappingFragment StoreEntitySet="MedicalCares">
+                <ScalarProperty Name="IdDog" ColumnName="IdDog" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateCare" ColumnName="DateCare" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentsPeriodTypes">
+            <EntityTypeMapping TypeName="DClubEntities.PaymentsPeriodType">
+              <MappingFragment StoreEntitySet="PaymentsPeriodTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DClubEntities.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="AvatarMimeType" ColumnName="AvatarMimeType" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="DClubEntities.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewsText" ColumnName="NewsText" />
+                <ScalarProperty Name="NewsDate" ColumnName="NewsDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

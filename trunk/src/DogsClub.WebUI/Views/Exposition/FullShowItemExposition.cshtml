@@ -1,0 +1,79 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+@{
+    Layout = "~\\Views\\Shared\\_Layout5.cshtml";
+    List<DogsClub.WebUI.Models.Dog> member = Model.GetDogsExpositionMembers;
+}
+<div>
+    <div class="newConteinerRex2">
+        <div class="container paddCon">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <div class="ExpositionHeader">@Html.DisplayFor(m => m.Name)</div>
+                        <div class="poleNameExposition">Дата :</div>
+                        <div class="NameExposirtion widthUp">
+                            @Html.DisplayFor(m => m.DateStart)
+                        </div>
+                        <div class="poleNameExposition">Описание :</div>
+                        <div class="NameExposirtion widthUp">
+                            @Html.DisplayFor(m => m.Description)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="ConteinerExpositionHome newNoBoreder">
+                        <div class="ExpositionHeader">ЗАЯВКИ</div>
+                        <div class="TopDogs newNoBoreder">
+                            @foreach (var item in Model.GetDogsExpositionRequests)
+                            {
+                                <div class="newMarg">
+                                    <span class="poleName">
+                                        @Html.ActionLink(item.Name, "ShowItemDogType", "DogType", new { @class = "newpoleName" })
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <div class="ConteinerExpositionHome newNoBoreder">
+                        <div class="ExpositionHeader">Участники</div>
+                        <div class="TopDogs newNoBoreder">
+                            @foreach (var item in Model.GetDogsExpositionMembers)
+                            {
+                                <div class="newMarg">
+                                    <span class="poleName">
+                                        @Html.ActionLink(item.Name, "ShowItemDogType", "DogType", new { @class = "newpoleName" })
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2  col-md-offset-1">
+                    <div class="ConteinerExpositionHome newNoBoreder">
+                        <div class="ExpositionHeader">Победители</div>
+                        <div class="TopDogs newNoBoreder">
+                            @foreach (var item in Model.GetWinners)
+                            {
+                                <div class="newMarg">
+                                    <span class="poleName">
+                                        @Html.ActionLink(item.GetDog.Name, "ShowItemDogType", "DogType", new { @class = "newpoleName" })
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

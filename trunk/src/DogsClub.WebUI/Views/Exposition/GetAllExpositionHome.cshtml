@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.Exposition>
+<div class="ConteinerExpositionHome">
+    <div class="ExpositionHeader">ВЫСТАВКИ</div>
+    <ul class="ListExposition">
+        @foreach (var item in Model)
+        {
+            <li class="itemExposition">
+                <div class="DateStartHomeIndex">
+                    @Html.DisplayFor(modelItem => item.DateStart)
+                </div>
+                <div class="itemExposHomeName">
+                    @Html.ActionLink(item.Name, "FullShowItemExposition", new { idExposition = item.Id, @class = "itemExposHomeName" })
+                </div>
+                <div class="itemExposHomeDescription">
+                    @item.Description
+                </div>
+                <div class="itemExposHomeName">
+                    @Html.ActionLink("Принять участие", "Add", "ExpositionRequests", new { idExposition = item.Id }, new { @class = "linkAddRequest" })
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+

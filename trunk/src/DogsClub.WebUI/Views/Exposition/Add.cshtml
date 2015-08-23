@@ -1,0 +1,24 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="ConteinerChengeUser">
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="NameAdd ">Название</div>
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "validationMessage" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "EditText2" } })
+
+        <div class="NameAdd ">Дата начала</div>
+        @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "validationMessage" })
+        @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "EditText2" } })
+
+        <div class="NameAdd ">Описание</div>
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "validationMessage" })
+        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "EditText2" } })
+        <input type="submit" value="Добавить" class="btn btn-info" id="AddButton" />
+    </div>
+}
+

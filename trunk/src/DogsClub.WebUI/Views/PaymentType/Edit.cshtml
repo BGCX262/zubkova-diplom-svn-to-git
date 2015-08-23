@@ -1,0 +1,37 @@
+﻿@model DogsClub.WebUI.Models.PaymentType
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+
+    List<SelectListItem> allPeriod = new List<SelectListItem>();
+    var a = ViewData["allPeriod"] as IEnumerable<DogsClub.WebUI.Models.PaymentsPeriodType>;
+    if (a != null)
+    {
+        allPeriod.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString() }));
+    }
+ }
+
+<div>
+    <div class="ConteinerAddExposition">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="ConteinerChengeUser">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div class="NameAdd">Название</div>
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "EditText2" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+        <div class="NameAdd">Питомец</div>
+        @Html.DropDownList("IdPeriod", allPeriod, new { @class = "EditText2" })
+
+        <input type="submit" value="Изменить" class="btn btn-info" id="AddButton" />
+    </div>
+}
+    </div>
+</div>
+
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

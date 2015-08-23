@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.Exposition>
+
+<table class="table table-hover">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.DateStart)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Заявки", "GetAllDogs", "ExpositionRequests", new { idExp = item.Id }, false)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Участники", "GetAllDogs", "ExpositionMember", new { idExp = item.Id }, false)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Победители", "GetAllDogs", "ExpositionWinner", new { idExp = item.Id }, false)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Редактировать", "Edit", new { Id = item.Id }) |
+                @Html.ActionLink("Удалить", "Remove", new { Id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

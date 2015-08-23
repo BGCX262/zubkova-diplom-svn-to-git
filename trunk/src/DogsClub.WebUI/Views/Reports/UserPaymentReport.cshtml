@@ -1,0 +1,220 @@
+﻿@model  List<DogsClub.WebUI.Models.Payment>
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+    var user = ViewData["user"] as DogsClub.WebUI.Models.User;
+    DateTime startPeriod = (DateTime)ViewData["startPeriod"];
+    DateTime endPeriod = (DateTime)ViewData["endPeriod"];
+}
+
+
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+
+<div class="ConteinerReportVaccination2">
+    <div class="FormReportVaccination">
+        <span class="headerWer">Вакцинация </span> @user.LastName @user.FirstName  @user.MiddleName c @startPeriod.ToLongDateString() по @endPeriod.ToLongDateString()
+    </div>
+    <div class="graphic-wrap">
+        <table class="table table-hover" id="tableReport">
+            <thead>
+                <tr>
+                    <td class="ZagName">Дата платежа</td>
+                    <td class="ZagName">Тип платежа</td>
+                    <td class="ZagName">Размер платежа</td>
+                </tr>
+            </thead>
+             <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td class="ZagValue2">@item.PayDate.ToShortDateString()</td>
+                        <td class="ZagValue2">@item.GetType.Name</td>
+                        <td class="ZagValue2">@item.PaySize</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <div class="col-md-12 graphic-wrap noPadding">
+            <div class="panel panel-default noBorderRadius">
+                <div class="panel-heading">
+                    Группировка по типу платежей за период @startPeriod.ToShortDateString() - @endPeriod.ToShortDateString()
+                </div>
+                <div class="panel-body">
+                    <div id="morris-donut-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-12 graphic-wrap noPadding">
+            <div class="panel panel-default noBorderRadius">
+                <div class="panel-heading">
+                    Группировка по годам
+                </div>
+                <div class="panel-body">
+                    <div id="morris-line-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script {
+    <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+    <script src="~/Scripts/morris/raphael-2.1.0.min.js"></script>
+    <script src="~/Scripts/morris/morris.js"></script>
+    <script>
+        var json = @Html.Raw(Json.Encode(ViewData["jsonData"]));
+        var yearsGrouping = @Html.Raw(Json.Encode(ViewData["yearsGrouping"]));
+
+        Morris.Donut({
+            element: 'morris-donut-chart',
+            data: json,
+            resize: true
+        });
+
+        Morris.Line({
+            element: 'morris-line-chart',
+            data: yearsGrouping,
+            xkey: 'y',
+            ykeys: ['a'],
+            hideHover: 'auto',
+            resize: true
+        });
+
+        $("#tableReport").dataTable({
+            "language": {
+                "lengthMenu": "Отображать _MENU_ записей на странице",
+                "zeroRecords": "Извините, таблица пуста",
+                "info": "Страница _PAGE_ из _PAGES_",
+                "infoEmpty": "Нет доступных записей",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "paginate": {
+                    "next": "Следующая страница",
+                    "previous": "Предыдущая страница"
+                },
+                "search": "Найти"
+            }
+        });
+
+
+
+    </script>
+}
+
+
+
+
+
+
+
+
+@*@model DogsClub.DomainModel.ReportsEntities.UserPaymentsStatistic
+@{
+    ViewBag.Title = "UserPaymentReport";
+}
+
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+
+<div>
+    <h2>Участник клуба: @Model.FullName</h2>
+    <h3>Платежи участника за период @Model.StartPeriod.ToShortDateString() - @Model.EndPeriod.ToShortDateString()</h3>
+</div>
+
+<div class="graphic-wrap">
+    <table class="table table-hover" id="tableReport">
+
+        <thead>
+            <tr>
+                <td>Дата платежа</td>
+                <td>Тип платежа</td>
+                <td>Размер платежа</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Payments)
+            {
+                <tr>
+                    <td>@item.PayDate.ToShortDateString()</td>
+                    <td>@item.PayType</td>
+                    <td>@item.PaySize</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <div class="col-md-12 graphic-wrap">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Группировка по типу платежей за период @Model.StartPeriod.ToShortDateString() - @Model.EndPeriod.ToShortDateString()
+            </div>
+            <div class="panel-body">
+                <div id="morris-donut-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="col-md-12 graphic-wrap">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Группировка по годам
+            </div>
+            <div class="panel-body">
+                <div id="morris-line-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script {
+    <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+    <script src="~/Scripts/morris/raphael-2.1.0.min.js"></script>
+    <script src="~/Scripts/morris/morris.js"></script>
+    <script>
+        var json = @Html.Raw(Json.Encode(ViewData["jsonData"]));
+        var yearsGrouping = @Html.Raw(Json.Encode(ViewData["yearsGrouping"]));
+
+        Morris.Donut({
+            element: 'morris-donut-chart',
+            data: json,
+            resize: true
+        });
+
+        Morris.Line({
+            element: 'morris-line-chart',
+            data: yearsGrouping,
+            xkey: 'y',
+            ykeys: ['a'],
+            hideHover: 'auto',
+            resize: true
+        });
+
+        $("#tableReport").dataTable({
+            "language": {
+                "lengthMenu": "Отображать _MENU_ записей на странице",
+                "zeroRecords": "Извините, таблица пуста",
+                "info": "Страница _PAGE_ из _PAGES_",
+                "infoEmpty": "Нет доступных записей",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "paginate": {
+                    "next": "Следующая страница",
+                    "previous": "Предыдущая страница"
+                },
+                "search": "Найти"
+            }
+        });
+
+
+
+    </script>
+}*@

@@ -1,0 +1,67 @@
+﻿<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+
+    List<SelectListItem> allUsers = new List<SelectListItem>();
+        if (ViewData["allUsers"] != null)
+        {
+            var a = ViewData["allUsers"] as IEnumerable<DogsClub.WebUI.Models.User>;
+            if (a != null)
+            {
+                allUsers.AddRange(a.Select(t => new SelectListItem() { Text = t.LastName + t.FirstName + t.MiddleName, Value = t.Id.ToString() }));
+            }
+        }    
+}
+<div class="FormReportVaccination">
+    <div class="FormReportVaccinationHeader">Платежи пользователя</div>
+
+    @using (Html.BeginForm("UserPaymentReport", "Reports", FormMethod.Post))
+    {
+        <div class="NamePersonCab">C</div>
+        @Html.TextBox("startPeriod", false, new { @class = "newValuePersonCab" });
+
+        <div class="NamePersonCab">По</div>
+        @Html.TextBox("endPeriod", DateTime.Now.ToShortDateString(), new { @class = "newValuePersonCab" });
+
+
+    <div class="NamePersonCab">Пользователля</div>
+    @Html.DropDownList("idUser", allUsers, new { @class = "newValuePersonCab" })
+
+    <input type="submit" id="AddButton2" value="Сформировать отчет" class="btn btn-info" />
+    }
+</div>
+
+@section script{
+    <script src="~/DatePicker/DataPicker(1-10).js"></script>
+    <script src="~/DatePicker/DataPicker(1-11).js"></script>
+    <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+
+    <script>
+		$('#startPeriod').datepicker({
+		    dateFormat: 'dd.mm.yy'
+		});
+		$(function () {
+		    $("#startPeriod").datepicker();
+		});
+		$('#startPeriod').datepicker('option', $.datepicker.regional["ru"]);
+
+		jQuery(function ($) {
+		    $.datepicker.regional['ru'] = {
+		        monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь'],
+		        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+		        firstDay: 1,
+		    };
+		    $.datepicker.setDefaults($.datepicker.regional['ru']);
+		});
+		$.datepicker.setDefaults($.extend(
+          $.datepicker.regional["ru"])
+        );
+    </script>
+}

@@ -1,0 +1,53 @@
+﻿@model DogsClub.WebUI.Models.ExpositionWinner
+
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+
+
+    List<SelectListItem> allMember = new List<SelectListItem>();
+    if (ViewData["AllMember"] != null)
+    {
+        var res = ViewData["allMember"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (res != null)
+        {
+
+            allMember.AddRange(res.Select(r => new SelectListItem() { Text = r.Name, Value = r.Id.ToString(), Selected = r.Id != Model.GetDog.Id ? false : true }));
+        }
+    }
+
+    List<SelectListItem> allAvard = new List<SelectListItem>();
+    if (ViewData["allAvard"] != null)
+    {
+        var res = ViewData["allAvard"] as IEnumerable<DogsClub.WebUI.Models.Avard>;
+        if (res != null)
+        {
+
+            allAvard.AddRange(res.Select(item => new SelectListItem() { Text = item.Name, Value = item.Id.ToString(), Selected = item.Id != Model.IdAvard ? false : true }));
+
+        }
+    }
+}
+    <div>
+        <div class="ConteinerAddExposition">
+            @using (@Html.BeginForm("Edit","ExpositionWinner",FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.IdExpositionMember)
+                @Html.AntiForgeryToken()
+                <div class="ConteinerChengeUser">
+                    @Html.Hidden("idExposition", ViewData["idExposition"])
+
+                    <div class="NameAdd">Участник</div>
+                        @Html.DropDownList("idMember", allMember, new { @class = "EditText2" })
+
+                    <div class="NameAdd">Место</div>
+                    @Html.ValidationMessageFor(model => model.WinnerPlace, "", new { @class = "validationMessage" })
+                    @Html.EditorFor(model => model.WinnerPlace, new { htmlAttributes = new { @class = "EditText2" } })
+
+                    <div class="NameAdd">Награда</div>
+                    @Html.DropDownList("idAvard", allAvard, new { @class = "EditText2" })
+
+                    <input type="submit" value="Изменить" class="btn btn-info" id="AddButton" />
+                </div>
+            }
+        </div>
+    </div>

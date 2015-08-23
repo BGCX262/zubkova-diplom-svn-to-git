@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.DogForSale>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="ZagName">
+                @Html.DisplayName("Имя")
+            </th>
+            <th class="ZagName">
+                @Html.DisplayName("Пол")
+            </th>
+            <th class="ZagName">
+                @Html.DisplayName("Хозяин")
+            </th>
+            <th class="ZagName">
+                @Html.DisplayName("Цена")
+            </th>
+            <th class="ZagName">
+                @Html.DisplayName("Коммиссионные")
+            </th>
+            <th class="ZagName">
+                @Html.DisplayName("Действия")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="ZagValue2">
+                    @Html.DisplayFor(modelItem => item.GetDog.Name)
+                </td>
+                <td class="ZagValue2">
+                    @Html.DisplayFor(modelItem => item.GetDog.GetSex)
+                </td>
+                <td class="ZagValue2">
+                    @Html.DisplayFor(modelItem => item.GetDog.User.Email)
+                </td>
+                <td class="ZagValue2">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="ZagValue2">
+                    @Html.DisplayFor(modelItem => item.ClubCommission)
+                </td>
+                <td class="ZagValue2">
+                    @Html.ActionLink("Редактировать", "Edit", new { Id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Remove", new { Id = item.Id })
+                </td>
+            </tr>
+        }
+        </tbody>
+</table>

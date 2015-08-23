@@ -1,0 +1,20 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.UserStatistic>
+<div class="TopDogs">
+    <div class="headerTop">Топ пользователей</div>
+    @foreach (var item in Model)
+    {
+        <div class="newMarg">
+            <span class="poleName">
+                @Html.ActionLink(item.GetUser.LastName + " " + item.GetUser.FirstName.ToUpper().Substring(1,1)+ ". " + item.GetUser.MiddleName.ToUpper().Substring(1,1)+ ". ", "FullShowItemUser", new { idUser = item.Id, @class = "poleName" })
+            </span>
+            <span class="poleName">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                @Html.DisplayFor(modelItem => item.NumOfDogsWinners)
+            </span>
+            @*<span class="poleName">
+                <a href="@Url.Action("Index", "Home", new {id = item.Id })" class='glyphicon glyphicon-arrow-right'></a>
+            </span>*@
+        </div>
+    }
+    @Html.ActionLink("Cписок пользователей", "FullShowAllUsers", "User", new { @class = "ShowAll" })
+</div>

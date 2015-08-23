@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D04E7EB4-880D-4B56-8CE3-55F41D311BCF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DogsClub</RootNamespace>
+    <AssemblyName>DogsClub</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAvardsRepo.cs" />
+    <Compile Include="Abstract\IBaseRepo.cs" />
+    <Compile Include="Abstract\IDogSalesRepo.cs" />
+    <Compile Include="Abstract\IDogsPhotosRepo.cs" />
+    <Compile Include="Abstract\IDogsRepo.cs" />
+    <Compile Include="Abstract\IDogTypesRepo.cs" />
+    <Compile Include="Abstract\IExpositionMembersRepo.cs" />
+    <Compile Include="Abstract\IExpositionRequests.cs" />
+    <Compile Include="Abstract\IExpositionsRepo.cs" />
+    <Compile Include="Abstract\IExpositionWinnersRepo.cs" />
+    <Compile Include="Abstract\IMedicalCaresRepo.cs" />
+    <Compile Include="Abstract\INewsRepo.cs" />
+    <Compile Include="Abstract\IPaymentsRepo.cs" />
+    <Compile Include="Abstract\IPaymentTypesRepo.cs" />
+    <Compile Include="Abstract\IUsersRepo.cs" />
+    <Compile Include="Abstract\IVaccinationsRepo.cs" />
+    <Compile Include="Avard.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\AvardsRepo.cs" />
+    <Compile Include="Concrete\BaseRepo.cs" />
+    <Compile Include="Concrete\DogSalesRepo.cs" />
+    <Compile Include="Concrete\DogsPhotosRepo.cs" />
+    <Compile Include="Concrete\ExpositionMembersRepo.cs" />
+    <Compile Include="Concrete\ExpositionRequestsRepo.cs" />
+    <Compile Include="Concrete\ExpositionsRepo.cs" />
+    <Compile Include="Concrete\ExpositionWinnersRepo.cs" />
+    <Compile Include="Concrete\MedicalCaresRepo.cs" />
+    <Compile Include="Concrete\NewsRepo.cs" />
+    <Compile Include="Concrete\PaymentsRepo.cs" />
+    <Compile Include="Concrete\PaymentTypesRepo.cs" />
+    <Compile Include="Concrete\UsersRepo.cs" />
+    <Compile Include="Concrete\DogsRepo.cs" />
+    <Compile Include="Concrete\VaccinationsRepo.cs" />
+    <Compile Include="DClubDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DClubDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DClubDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DClubDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DClubDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Dog.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DogsForSale.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DogsPhoto.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DogType.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\DogTypesRepo.cs" />
+    <Compile Include="Exposition.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpositionMember.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpositionsRequest.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpositionWinner.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fake\DogsFakeRepo.cs" />
+    <Compile Include="Fake\ExpositionWinnersFakeRepo.cs" />
+    <Compile Include="Fake\FakeDataStore.cs" />
+    <Compile Include="Fake\PayTypesFakeRepo.cs" />
+    <Compile Include="Fake\UsersFakeRepo.cs" />
+    <Compile Include="MedicalCare.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="News.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentsPeriodType.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentType.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesHistory.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersRole.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vaccination.cs">
+      <DependentUpon>DClubDataModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="DClubDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DClubDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DClubDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DClubDataModel.edmx</DependentUpon>
+      <LastGenOutput>DClubDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DClubDataModel.edmx.diagram">
+      <DependentUpon>DClubDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="DClubDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DClubDataModel.edmx</DependentUpon>
+      <LastGenOutput>DClubDataModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DogsClub.Shared\DogsClub.Shared.csproj">
+      <Project>{457583d3-e929-443b-803e-74ee26002881}</Project>
+      <Name>DogsClub.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

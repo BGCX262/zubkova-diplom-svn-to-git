@@ -1,0 +1,23 @@
+﻿@model  IEnumerable<DogsClub.WebUI.Models.Avard>
+<table class="table table-hover">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="ZagValue2">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="ZagValue2">
+                @Html.ActionLink("Редактировать", "Edit", "Avard", new { idAvard = item.Id }, false) |
+                @Html.ActionLink("Удалить", "Remove", new { avard = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

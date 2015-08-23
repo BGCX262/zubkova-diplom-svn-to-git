@@ -1,0 +1,19 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+<div>
+    <div class="ConteinerAddExposition">
+        @Html.Action("Add", "DogForSale")
+    </div>
+    <div class="ConteinerGetAllExposition">
+        @Html.Action("GetAll", "DogForSale")
+    </div>
+</div>
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+

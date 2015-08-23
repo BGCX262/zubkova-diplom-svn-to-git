@@ -1,0 +1,81 @@
+﻿@model DogsClub.WebUI.Models.MedicalCare
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+@{
+    List<SelectListItem> allDog = new List<SelectListItem>();
+    if (ViewData["allDog"] != null)
+    {
+        var a = ViewData["allDog"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (a != null)
+        {
+            allDog.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString(), Selected = t.Id != Model.IdDog ? false : true }));
+        }
+    }
+}
+<link href="~/DatePicker/jquery-ui-DatePicker.css" rel="stylesheet" />
+<div>
+    <div class="ConteinerAddExposition">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="ConteinerChengeUser">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="NameAdd">Название</div>
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "validationMessage" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "EditText2" } })
+
+
+                <div class="NameAdd ">Дата</div>
+                @Html.ValidationMessageFor(model => model.DateCare, "", new { @class = "validationMessage" })
+                @Html.EditorFor(model => model.DateCare, new { htmlAttributes = new { @class = "EditText2" } })
+
+
+
+                <div class="NameAdd ">Описание</div>
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "validationMessage" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "EditText2" } })
+
+
+                <div class="NameAdd ">Питомец</div>
+                @Html.DropDownList("idDog", allDog, new { @class = "EditText2" })
+
+                <input type="submit" value="Изменить" class="btn btn-info" id="AddButton" />
+            </div>
+        }
+    </div>
+</div>
+
+@section script{
+    <script src="~/DatePicker/DataPicker(1-10).js"></script>
+    <script src="~/DatePicker/DataPicker(1-11).js"></script>
+    <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $('#DateCare').datepicker({
+            dateFormat: 'dd.mm.yy'
+        });
+        $(function () {
+            $("#DateCare").datepicker();
+        });
+        $('#DateCare').datepicker('option', $.datepicker.regional["ru"]);
+
+        jQuery(function ($) {
+            $.datepicker.regional['ru'] = {
+                monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+                'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь'],
+                dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                firstDay: 1,
+            };
+            $.datepicker.setDefaults($.datepicker.regional['ru']);
+        });
+        $.datepicker.setDefaults($.extend(
+          $.datepicker.regional["ru"])
+        );
+    </script>
+}

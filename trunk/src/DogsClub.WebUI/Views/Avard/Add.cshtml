@@ -1,0 +1,24 @@
+﻿@model DogsClub.WebUI.Models.Avard
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="ConteinerChengeUser">
+        @Html.AntiForgeryToken()
+
+        <div class="NameAdd">Название</div>
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "EditText2" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "validationMessage" })
+
+        <div class="NameAdd ">Описание</div>
+        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "EditText2" } })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "validationMessage" })
+
+        <input type="submit" value="Добавить" class="btn btn-info" id="buttonAddAvard" />
+    </div>
+}
+@section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+

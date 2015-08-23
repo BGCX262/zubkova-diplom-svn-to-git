@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+<div class="reports-wrapper">
+    <div class="reports-wrapper-header">Список отчетов</div>
+    <ul class="reports-links">
+        <li>@Html.ActionLink("Вакцинации всех собак", "AllDogsVaccination")</li>
+        <li>@Html.ActionLink("Вакцинация конкретной собаки", "DogVaccination")</li>
+        <li>@Html.ActionLink("Взносы всех пользователей", "AllUsersPayments")</li>
+        <li>@Html.ActionLink("Взносы конкретного пользователя", "UserPayment")</li>
+        <li>@Html.ActionLink("Отчет по типу платежа", "PaymentTypeReport")</li>
+    </ul>
+</div>
+

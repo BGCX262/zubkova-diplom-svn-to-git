@@ -1,0 +1,16 @@
+﻿@model DogsClub.WebUI.Models.DogsPhoto
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div>
+    <div class="PhotoDog">
+        <img src="@Url.Action("GetPhotoDogs", "Images", new { IdPhoto = Model.Id })" width="792" height="562" />
+    </div>
+    <div class="ConteinerPanelShowD">
+        <a href="@Url.Action("ChengePhoto", "Images", new { IdPhoto = Model.Id })" , title="Изменить"><span class="glyphicon glyphicon-pencil newstyleIcon"></span></a>
+        <a href="@Url.Action("Delete", "Images", new { IdPhoto = Model.Id })" , title="Удалить"><span class="glyphicon glyphicon-remove newstyleIcon"></span></a>
+        <a href="@Url.Action("AllPhotoDogsUser", "Images", new { IdPhoto = Model.Id })", title="Закрыть"><span class="glyphicon glyphicon-off newstyleIcon"></span></a>
+
+    </div>
+</div>
+

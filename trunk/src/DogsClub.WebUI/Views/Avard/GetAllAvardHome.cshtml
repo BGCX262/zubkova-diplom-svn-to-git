@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.Avard>
+<div class="ConteinerExpositionHome newNoBoreder">
+    <div class="ExpositionHeader">НАГРАДЫ</div>
+    <div class="TopDogs newNoBoreder">
+        @foreach (var item in Model)
+        {
+            <div class="newMarg">
+                <span class="poleName">
+                    @Html.ActionLink(item.Name, "itemAvardShowHome", "Avard", new { id = item.Id, @class = "newpoleName" })
+                </span>
+            </div>
+        }
+    </div>
+</div>

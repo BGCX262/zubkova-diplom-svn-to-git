@@ -1,0 +1,37 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<div>
+    <div class="ConteinerAddExposition">
+        @Html.Action("Add", "Vaccination")
+    </div>
+    <div class="newConteinerVaccination">
+        @Html.Action("GetAll", "Vaccination")
+    </div>
+</div>
+    @section script {
+        <script src="~/Scripts/bootstrap.js"></script>
+
+        <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#table").dataTable({
+                    "language": {
+                        "lengthMenu": "Отображать _MENU_ записей на странице",
+                        "zeroRecords": "Извините, таблица пуста",
+                        "info": "Страница _PAGE_ из _PAGES_",
+                        "infoEmpty": "Нет доступных записей",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "paginate": {
+                            "next": "Следующая страница",
+                            "previous": "Предыдущая страница"
+                        },
+                        "search": "Найти"
+                    }
+                });
+            });
+        </script>
+    }

@@ -1,0 +1,10 @@
+﻿<div class="IsExestensRole">
+    @if (User.IsInRole("Администратор"))
+    {
+        @Html.ActionLink("Администратор", "IsAdmin", "Account")
+    }
+    @if (User.IsInRole("Модератор"))
+    {
+        @Html.ActionLink("Модератор", "Index", "MedicalCare")
+    }
+</div>

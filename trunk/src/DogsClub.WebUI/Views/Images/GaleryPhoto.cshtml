@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.DogsPhoto>
+<div id="port-folio" class="pad-top-botm">
+    <div class="container">
+        <div class="row ">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-4 ">
+                    <div class="portfolio-item wow rotateIn animated" data-wow-delay="0.4s">
+                        <img src="@Url.Action("GetPhotoDogs", "Images", new { IdPhoto = item.Id })" width="345" height="200"  />
+                          <div class="overlay">
+                            <a class="preview  " href="@Url.Action("GetPhotoDogs", "Images", new { IdPhoto = item.Id })"><i class="fa fa-search-plus fa-5x"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

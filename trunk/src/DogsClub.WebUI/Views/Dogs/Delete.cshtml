@@ -1,0 +1,25 @@
+﻿@model DogsClub.WebUI.Models.Dog
+@{
+    Layout = "/Views/Shared/_Layout2.cshtml";
+}
+@{
+    List<DogsClub.WebUI.Models.Dog> dog = new List<DogsClub.WebUI.Models.Dog>();
+    if (ViewData["Delete"] != null)
+    {
+        var a = ViewData["Delete"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (a != null)
+        {
+            dog.AddRange(a);
+        }
+    }
+}
+<div class="containerDogDelete">
+    <div>Хотите удалить @Html.DisplayFor(model => model.Name)</div>
+    @using (Html.BeginForm("Delete", "Dogs", FormMethod.Post))
+    {
+        @Html.Hidden("Id", Model.Id)
+    <button name="Confirm" class="btn btn-info newbtn-info newPhoto" value="true">Да</button>
+    <button name="Confirm" class="btn btn-info newbtn-info" value="false">Нет</button>
+    }
+</div>
+

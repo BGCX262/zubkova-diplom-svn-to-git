@@ -1,0 +1,45 @@
+﻿@model DogsClub.WebUI.Models.DogForSale
+
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+}
+
+@{
+
+    List<SelectListItem> IdDog = new List<SelectListItem>();
+    if (ViewData["allDogs"] != null)
+    {
+        var res = ViewData["allDogs"] as IEnumerable<DogsClub.WebUI.Models.Dog>;
+        if (res != null)
+        {
+
+            IdDog.AddRange(res.Select(item => new SelectListItem() { Text = item.Name, Value = item.Id.ToString(), Selected = item.Id == Model.GetDog.Id ? true : false }));
+        }
+    }
+}
+
+
+<div>
+    <div class="ConteinerAddExposition">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="ConteinerChengeUser">
+        <div class="NameAdd ">Питомец</div>
+        @Html.DropDownList("IdDog", IdDog, new { @class = "EditText2" })
+
+        <div class="NameAdd ">Цена</div>
+        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "validationMessage" })
+        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "EditText2" } })
+
+        <div class="NameAdd ">% клубу</div>
+        @Html.ValidationMessageFor(model => model.ClubCommission, "", new { @class = "validationMessage" })
+        @Html.EditorFor(model => model.ClubCommission, new { htmlAttributes = new { @class = "EditText2" } })
+
+        <input type="submit" value="Добавить" class="btn btn-info" id="AddButton" />
+    </div>
+}
+
+    </div>
+</div>
+

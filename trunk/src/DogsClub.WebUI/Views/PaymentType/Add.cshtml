@@ -1,0 +1,27 @@
+﻿@model DogsClub.WebUI.Models.PaymentType
+@{
+    List<SelectListItem> allPeriod = new List<SelectListItem>();
+    var a = ViewData["allPeriod"] as IEnumerable<DogsClub.WebUI.Models.PaymentsPeriodType>;
+    if (a != null)
+    {
+        allPeriod.AddRange(a.Select(t => new SelectListItem() { Text = t.Name, Value = t.Id.ToString() }));
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="ConteinerChengeUser">
+        @Html.AntiForgeryToken()
+
+        <div class="NameAdd">Название</div>
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "validationMessage" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "EditText2" } })
+
+        <div class="NameAdd ">Выберите период</div>
+        @Html.DropDownList("IdPeriod", allPeriod, new { @class = "EditText2" })
+
+        <input type="submit" value="Добавить" class="btn btn-info" id="AddButton" />
+    </div>
+}
+

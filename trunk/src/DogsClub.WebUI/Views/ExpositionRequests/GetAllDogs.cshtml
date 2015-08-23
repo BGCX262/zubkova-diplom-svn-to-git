@@ -1,0 +1,37 @@
+﻿@model DogsClub.WebUI.Models.Exposition
+
+@{
+    Layout = "~\\Views\\Shared\\_Layout4.cshtml";
+    List<DogsClub.WebUI.Models.Dog> list = Model.GetDogsExpositionRequests.ToList();
+}
+
+<div class="newheaderExposItem">
+    @Html.DisplayFor(modelItem => modelItem.Name, new { @class = "media-heading", @id = "itemExposHome" })
+    <div class="DateStartHomeIndex">@Html.DisplayFor(modelItem => modelItem.DateStart, new { @Title = "Работает" })</div>
+</div>
+    <div class="ConteinerGetAllExposition">
+        <table class="table table-hover">
+            @foreach (var item in list)
+            {
+                <tr>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.DogType.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.GetSex)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.ActionLink("Подтвердить", "Add", "ExpositionMember", new { ExpId = Model.Id, DogId = item.Id }, false)  |  
+                        @Html.ActionLink("Удалить заявку", "Remove", new { idDog = item.Id, ExpId = Model.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+

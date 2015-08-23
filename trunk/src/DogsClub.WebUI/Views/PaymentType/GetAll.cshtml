@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DogsClub.WebUI.Models.PaymentType>
+<link href="~/Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+<div class="ConteinerUserList">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="ZagName">
+                    @Html.DisplayName("Имя")
+                </th>
+                <th class="ZagName">
+                    @Html.DisplayName("Период")
+                </th>
+                <th class="ZagName">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelsItem => item.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.DisplayFor(modelsItem => item.GetPeriod.Name)
+                    </td>
+                    <td class="ZagValue2">
+                        @Html.ActionLink("Редактировать", "Edit", new { idPaymentType = item.Id }) |
+                        @Html.ActionLink("Удалить", "Remove", new { idPaymentType = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section script {
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+    <script src="~/DatePicker/DataPicker(1-10).js"></script>
+    <script src="~/DatePicker/DataPicker(1-11).js"></script>
+    <script src="~/DatePicker/MyScriptDatePicker.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").dataTable({
+                "language": {
+                    "lengthMenu": "Отображать _MENU_ записей на странице",
+                    "zeroRecords": "Извините, таблица пуста",
+                    "info": "Страница _PAGE_ из _PAGES_",
+                    "infoEmpty": "Нет доступных записей",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "next": "Следующая страница",
+                        "previous": "Предыдущая страница"
+                    },
+                    "search": "Найти"
+                }
+            });
+        });
+    </script>
+}
+
+
